@@ -1,10 +1,5 @@
 import { Component } from '@angular/core';
-
-interface IData {
-  id: number;
-  name: string;
-  price: number;
-}
+import { IData } from 'src/models/interfaces/data.interface';
 
 function generateData(length: number): IData[] {
   return [];

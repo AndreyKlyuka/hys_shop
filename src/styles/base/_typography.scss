@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap");
+
+@font-face {
+  font-family: "Jost";
+  src: local("Jost-SemiBold"),
+    url("../../assets/fonts/Jost-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Jost";
+  src: local("Jost-Medium"),
+    url("../../assets/fonts/Jost-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Jost";
+  src: local("Jost-Regular"),
+    url("../../assets/fonts/Jost-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Jost";
+  src: local("Jost-Ligth"),
+    url("../../assets/fonts/Jost-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
