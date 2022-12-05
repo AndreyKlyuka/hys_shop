@@ -13,8 +13,13 @@ p,
 figure,
 blockquote,
 dl,
-dd {
+dd,
+nav,
+ul,
+ol,
+li {
   margin: 0;
+  padding: 0;
 }
 
 ul[role="list"],
