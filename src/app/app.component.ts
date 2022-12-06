@@ -1,26 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IData } from '../models/interfaces/data.interface';
+import { ProductsService } from './products/products.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  public products: IData[] = this.generateData(8);
+export class AppComponent implements OnInit {
+  public products: IData[] = [];
 
-  private generateData(length: number): IData[] {
-    const data: IData[] = [];
+  constructor(private productService: ProductsService) {}
 
-    for (let i = 0; i < length; i++) {
-      const product: IData = {
-        id: i,
-        name: Math.random().toString(36).slice(2, 8),
-        price: +(Math.random() * 100).toFixed() * 10,
-      };
-
-      data.push(product);
-    }
-    return data;
+  ngOnInit(): void {
+    this.products = this.productService.generateData(8);
   }
 }
