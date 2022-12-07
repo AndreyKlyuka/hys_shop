@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./styles/base/typography";
+@import "./styles/base/reset";
+@import "./styles/utils/variables";
+
+body {
+  font-family: "Jost";
+  font-weight: 400;
+  font-size: $text-regular;
+  color: $text-primary;
+}
+
+.container {
+  max-width: $container;
+  width: $container;
+}
