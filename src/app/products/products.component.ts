@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IData } from 'src/models/interfaces/data.interface';
+import { IProduct } from 'src/models/interfaces/product.interface';
 
 @Component({
   selector: 'app-products',
@@ -8,5 +8,5 @@ import { IData } from 'src/models/interfaces/data.interface';
 })
 export class ProductsComponent {
   @Input()
-  public productData!: IData;
+  public productData!: IProduct;
 }

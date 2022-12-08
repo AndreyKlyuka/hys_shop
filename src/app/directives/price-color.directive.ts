@@ -1,10 +1,13 @@
-import { Directive, ElementRef } from '@angular/core';
+import { Directive, ElementRef, Input } from '@angular/core';
 
 @Directive({
-  selector: '[appPriceColor]',
+  selector: '[productPriceColor]',
 })
 export class PriceColorDirective {
-  constructor(private el: ElementRef) {
-    if (Math.random() < 0.5) this.el.nativeElement.style.color = 'red';
+  constructor(private el: ElementRef) {}
+
+  @Input() set productPriceColor(condition: number) {
+    if (condition > 500) this.el.nativeElement.style.color = 'pink';
+    if (condition > 1000) this.el.nativeElement.style.color = 'crimson';
   }
 }
