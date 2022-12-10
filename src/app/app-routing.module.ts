@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
+import { ProductsModule } from './modules/products/products.module';
 
 const routes: Routes = [
   {
@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: 'products',
     pathMatch: 'full',
-    component: AppComponent,
+    loadChildren: () => ProductsModule,
   },
 ];
 
