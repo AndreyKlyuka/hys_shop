@@ -1,5 +1,4 @@
-@import "../../styles/utils/variables";
-@import "../../styles/components/btn";
+@import "utils/variables";
 
 header {
   display: flex;
@@ -32,30 +31,4 @@ header {
     border-radius: 50%;
     background-color: white;
   }
-}
-
-.products {
-  max-width: $container;
-  margin: 0 auto;
-
-  &__title {
-    margin: 28px 0 57px 0;
-  }
-
-  &__cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 39px;
-  }
-
-  &__load {
-    display: flex;
-    justify-content: center;
-    margin-top: 52px;
-  }
-}
-
-footer {
-  margin-top: 39px;
-  margin-left: 54px;
 }

@@ -3,7 +3,7 @@
 @font-face {
   font-family: "Jost";
   src: local("Jost-SemiBold"),
-  url("../../../assets/fonts/Jost-SemiBold.ttf") format("truetype");
+    url("../../fonts/Jost-SemiBold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
 }
@@ -11,7 +11,7 @@
 @font-face {
   font-family: "Jost";
   src: local("Jost-Medium"),
-  url("../../../assets/fonts/Jost-Medium.ttf") format("truetype");
+    url("../../fonts/Jost-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
 }
@@ -19,15 +19,14 @@
 @font-face {
   font-family: "Jost";
   src: local("Jost-Regular"),
-  url("../../../assets/fonts/Jost-Regular.ttf") format("truetype");
+    url("../../fonts/Jost-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Jost";
-  src: local("Jost-Ligth"),
-  url("../../../assets/fonts/Jost-Light.ttf") format("truetype");
+  src: local("Jost-Ligth"), url("../../fonts/Jost-Light.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
 }

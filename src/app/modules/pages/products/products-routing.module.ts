@@ -5,9 +5,12 @@ import { ProductsComponent } from './products.component';
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
     component: ProductsComponent,
   },
+  // {
+  //   path: ':id',
+  //   component: ProductComponent,
+  // },
 ];
 
 @NgModule({

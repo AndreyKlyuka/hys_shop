@@ -1,0 +1,23 @@
+@import "utils/variables";
+@import "components/btn";
+
+.products {
+  max-width: $container;
+  margin: 0 auto;
+
+  &__title {
+    margin: 28px 0 57px 0;
+  }
+
+  &__cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 39px;
+  }
+
+  &__load {
+    display: flex;
+    justify-content: center;
+    margin-top: 52px;
+  }
+}

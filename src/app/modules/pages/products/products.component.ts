@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IProduct } from 'src/app/models/interfaces/product.interface';
+import { IProduct } from '@interfaces/product.interface';
 import { ProductsService } from './products.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class ProductsComponent {
 
   constructor(private productService: ProductsService) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.products = this.productService.generateData(8);
   }
 }
