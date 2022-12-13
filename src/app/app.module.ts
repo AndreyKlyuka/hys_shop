@@ -10,7 +10,8 @@ import { ProductsService } from '@pages/products/products.service';
 import { ProductCardComponent } from '@shared/components/product-card/product-card.component';
 import { HeaderComponent } from '@core/header/header.component';
 import { FooterComponent } from '@core/footer/footer.component';
-import { HomeComponent } from './modules/pages/home/home.component';
+import { HomeComponent } from '@pages/home/home.component';
+import { ProductComponent } from '@pages/product/product.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HomeComponent } from './modules/pages/home/home.component';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
+    ProductComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, ProductsModule],
   providers: [ProductsService],
