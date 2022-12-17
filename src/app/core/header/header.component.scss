@@ -32,3 +32,16 @@ header {
     background-color: white;
   }
 }
+
+a {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.cart-item {
+  position: relative;
+}

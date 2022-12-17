@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IProduct } from '@interfaces/product.interface';
 import { ProductsService } from './products.service';
 
@@ -8,13 +8,11 @@ import { ProductsService } from './products.service';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
-  @Input()
   public products: IProduct[] = [];
 
-  constructor(private productService: ProductsService) {}
+  constructor(private productsService: ProductsService) {}
 
   ngOnInit() {
-    this.products = this.productService.getProducts(8);
-    this.productService.setData(this.products);
+    this.products = this.productsService.getProducts(8);
   }
 }

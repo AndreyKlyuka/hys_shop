@@ -4,7 +4,7 @@ import { ProductCardModule } from './product-card.module';
 
 const routes: Routes = [
   {
-    path: 'products/:id',
+    path: ':id',
     pathMatch: 'full',
     loadChildren: () => ProductCardModule,
   },

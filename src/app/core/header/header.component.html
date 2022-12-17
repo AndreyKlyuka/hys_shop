@@ -5,9 +5,17 @@
     </div>
     <nav class="header__menu">
       <ul class="header__list">
-        <li class="header__menu-item">Products</li>
-        <li class="header__menu-item">Cart</li>
+        <li class="header__menu-item">
+          <a [routerLink]="['/products']">Products</a>
+
+        </li>
+        <li class="header__menu-item cart-item">
+          <a (mouseover)="showCartTooltip()" (mouseout)="closeCartTooltip()" [routerLink]="['/cart']">Cart</a>
+          <app-cart-tooltip *ngIf="showCart"></app-cart-tooltip>
+
+        </li>
       </ul>
     </nav>
+
   </div>
 </header>

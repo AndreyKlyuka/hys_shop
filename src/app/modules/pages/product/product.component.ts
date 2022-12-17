@@ -9,7 +9,7 @@ import { IProduct } from '@interfaces/product.interface';
 })
 export class ProductComponent implements OnInit {
   public productData!: IProduct;
-  public productId!: number;
+  public productId: number = 0;
 
   private allProducts: IProduct[];
 

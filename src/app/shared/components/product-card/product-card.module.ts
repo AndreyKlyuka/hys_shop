@@ -6,5 +6,6 @@ import { UahCurrencyPipe } from '@pipes/uah-currency.pipe';
 @NgModule({
   declarations: [UahCurrencyPipe],
   imports: [CommonModule, ProductCardRoutingModule],
+  providers: [],
 })
 export class ProductCardModule {}

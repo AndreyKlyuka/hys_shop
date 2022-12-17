@@ -1,31 +1,25 @@
 import { Injectable } from '@angular/core';
 import { IProduct } from '@interfaces/product.interface';
-import { ShareDataService } from '@shared/services/share-data.service';
 
 @Injectable()
-export class ProductsService extends ShareDataService<IProduct[]> {
-  products!: IProduct[];
-
-  constructor() {
-    super();
-  }
+export class ProductsService {
+  constructor() {}
 
   public getProducts(length: number = 8, key: string = 'products'): IProduct[] {
-    if (
-      !localStorage.getItem(key) ||
-      JSON.parse(localStorage.getItem(key)!).length != length
-    ) {
-      this.setToStorage(this.generateProducts(length), length);
+    if (!localStorage.getItem(key)) {
+      this.setToStorage(this.generateProducts(length));
     }
     return JSON.parse(localStorage.getItem(key)!);
   }
 
-  private setToStorage(
-    data: IProduct[],
-    length: number = 8,
-    key: string = 'products'
-  ) {
-    localStorage.setItem(key, JSON.stringify(this.generateProducts(length)));
+  public replaceProduct(productId: number, productToChange: IProduct) {
+    const products = this.getProducts();
+    products.splice(productId - 1, 1, productToChange);
+    this.setToStorage(products);
+  }
+
+  private setToStorage(data: IProduct[], key: string = 'products') {
+    localStorage.setItem(key, JSON.stringify(data));
   }
 
   private generateProducts(length: number): IProduct[] {
@@ -37,6 +31,7 @@ export class ProductsService extends ShareDataService<IProduct[]> {
         price: +Math.ceil(Math.random() * 1000 + Math.random() * 1000).toFixed(
           2
         ),
+        inCart: false,
       };
       data.push(product);
     }

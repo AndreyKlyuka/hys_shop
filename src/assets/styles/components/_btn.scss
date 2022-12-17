@@ -1,5 +1,6 @@
 .btn {
   border: 0;
+
   &__product {
     padding: 15px 55px;
     border-radius: 3px;
@@ -7,7 +8,12 @@
     background-color: $secondary;
     font-size: $text-small;
   }
+
   &__admin {
     background-color: $white;
+  }
+
+  &__in-cart {
+    background-color: yellow;
   }
 }

@@ -1,0 +1,14 @@
+<app-header></app-header>
+<main>
+  <section class="cart">
+    <h1 class="cart__title">Cart</h1>
+    <div class="cart__cards">
+      <app-product-card
+        *ngFor="let cartProduct of cartProducts"
+        [productData]="cartProduct"
+      ></app-product-card>
+    </div>
+
+  </section>
+</main>
+<app-footer></app-footer>
