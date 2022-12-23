@@ -1,27 +1,34 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IProduct } from '@interfaces/product.interface';
-import { ProductsService } from '@pages/products/products.service';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { CartService } from '@pages/cart/cart.service';
+import { Subscription } from 'rxjs';
+import { IProduct } from '@interfaces/product.interface';
 
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.scss'],
 })
-export class ProductCardComponent implements OnInit {
+export class ProductCardComponent implements OnInit, OnDestroy {
   @Input()
   public productData!: IProduct;
 
-  constructor(
-    private productsService: ProductsService,
-    private cartService: CartService
-  ) {}
+  public inCart: boolean = false;
+
+  private subscription!: Subscription;
+
+  constructor(public cartService: CartService) {}
 
   public toggleProduct() {
-    this.productData.inCart = !this.productData.inCart;
-    this.productsService.replaceProduct(this.productData.id, this.productData);
-    this.cartService.add(this.productsService.getProducts());
+    this.cartService.toggle(this.productData);
   }
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.subscription = this.cartService.cartChanged$.subscribe((products) => {
+      this.inCart = products.some(({ id }) => id === this.productData.id);
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }

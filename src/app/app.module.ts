@@ -12,8 +12,10 @@ import { HeaderComponent } from '@core/header/header.component';
 import { FooterComponent } from '@core/footer/footer.component';
 import { HomeComponent } from '@pages/home/home.component';
 import { ProductComponent } from '@pages/product/product.component';
-import { CartComponent } from './modules/pages/cart/cart.component';
-import { CartTooltipComponent } from './shared/components/cart-tooltip/cart-tooltip.component';
+import { CartComponent } from '@pages/cart/cart.component';
+import { CartTooltipComponent } from '@shared/components/cart-tooltip/cart-tooltip.component';
+
+import { NotFoundComponent } from '@pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { CartTooltipComponent } from './shared/components/cart-tooltip/cart-tool
     ProductComponent,
     CartComponent,
     CartTooltipComponent,
+    NotFoundComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, ProductsModule],
   providers: [ProductsService],

@@ -1,5 +1,5 @@
-@import "../../../../assets/styles/utils/variables";
-@import "../../../../assets/styles/components/btn";
+@import "utils/variables";
+@import "components/btn";
 
 .card {
   width: 402px;
@@ -10,6 +10,17 @@
   flex-direction: column;
   gap: 25px;
   line-height: 44px;
+
+  &__info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+  }
 
   button {
     margin-top: auto;

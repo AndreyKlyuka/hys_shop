@@ -7,7 +7,7 @@ export class BaseLocalStorageService<T> {
   constructor() {}
 
   public get(key: string) {
-    if (!JSON.parse(localStorage.getItem(key)!)) this.createField(key, null);
+    // if (!JSON.parse(localStorage.getItem(key)!)) this.createField(key, null);
     return JSON.parse(localStorage.getItem(key)!);
   }
 

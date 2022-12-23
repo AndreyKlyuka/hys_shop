@@ -1,14 +1,21 @@
 <article class="products__card card">
-  <div class="card__product-name">
-    <a [routerLink]="[productData.id]">{{ productData.name }}</a>
+  <div class="card__info">
+    <div class="card__description">
+      <div class="card__product-name">
+        <a [routerLink]="['/products/', productData.id]">{{ productData.name }}</a>
+      </div>
+      <div [productPriceColor]="productData.price"
+           class="card__product-price">{{ productData.price | uahCurrency}}</div>
+    </div>
+    <ng-content></ng-content>
   </div>
-  <div class="card__product-price"
-       [productPriceColor]="productData.price">{{ productData.price | uahCurrency}}</div>
+
+
   <button (click)="toggleProduct()"
           [ngClass]="{
-                      'btn__in-cart': productData.inCart,
-                      '':!productData.inCart
+                      'btn__in-cart': inCart,
+                      '':!inCart
                      }"
-          class="card__product-add btn btn__product">{{productData.inCart ? 'Remove from cart' : 'Add to cart'}}
+          class="card__product-add btn btn__product">{{ inCart ? 'Remove from cart' : 'Add to cart'}}
   </button>
 </article>

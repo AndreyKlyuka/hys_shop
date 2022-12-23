@@ -10,8 +10,14 @@
 
         </li>
         <li class="header__menu-item cart-item">
-          <a (mouseover)="showCartTooltip()" (mouseout)="closeCartTooltip()" [routerLink]="['/cart']">Cart</a>
-          <app-cart-tooltip *ngIf="showCart"></app-cart-tooltip>
+          <a (mouseover)="openTooltip()"
+             (mouseleave)="closeTooltip()"
+             [routerLink]="['/cart']"
+          >Cart</a>
+          <app-cart-tooltip
+            (mouseover)="openTooltip()"
+            (mouseleave)="closeTooltip()"
+          ></app-cart-tooltip>
 
         </li>
       </ul>

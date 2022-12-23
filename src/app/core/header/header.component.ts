@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ProductsService } from '@pages/products/products.service';
+import { CartTooltipService } from '@shared/components/cart-tooltip/cart-tooltip.service';
 
 @Component({
   selector: 'app-header',
@@ -7,15 +7,13 @@ import { ProductsService } from '@pages/products/products.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  public showCart = false;
+  constructor(private cartTooltipService: CartTooltipService) {}
 
-  constructor(private productsService: ProductsService) {}
-
-  public showCartTooltip() {
-    this.showCart = true;
+  openTooltip() {
+    this.cartTooltipService.open();
   }
 
-  public closeCartTooltip() {
-    this.showCart = false;
+  closeTooltip() {
+    this.cartTooltipService.close();
   }
 }
