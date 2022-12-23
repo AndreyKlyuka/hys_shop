@@ -1,25 +1,27 @@
 import { Injectable } from '@angular/core';
 import { IProduct } from '@interfaces/product.interface';
+import { BaseLocalStorageService } from '@shared/services/base-local-storage.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class ProductsService {
-  constructor() {}
+  private productsSubject$ = new BehaviorSubject<IProduct[]>([]);
 
-  public getProducts(length: number = 8, key: string = 'products'): IProduct[] {
+  public productsChanged$ = this.productsSubject$.asObservable();
+
+  constructor(
+    private baseLocalStorageService: BaseLocalStorageService<IProduct[]>
+  ) {}
+
+  public getFromStorage(length: number = 8, key: string = 'products') {
     if (!localStorage.getItem(key)) {
       this.setToStorage(this.generateProducts(length));
     }
-    return JSON.parse(localStorage.getItem(key)!);
+    this.productsSubject$.next(this.baseLocalStorageService.get(key));
   }
 
-  public replaceProduct(productId: number, productToChange: IProduct) {
-    const products = this.getProducts();
-    products.splice(productId - 1, 1, productToChange);
-    this.setToStorage(products);
-  }
-
-  private setToStorage(data: IProduct[], key: string = 'products') {
-    localStorage.setItem(key, JSON.stringify(data));
+  private setToStorage(value: IProduct[], key: string = 'products') {
+    this.baseLocalStorageService.set(value, key);
   }
 
   private generateProducts(length: number): IProduct[] {
@@ -31,7 +33,6 @@ export class ProductsService {
         price: +Math.ceil(Math.random() * 1000 + Math.random() * 1000).toFixed(
           2
         ),
-        inCart: false,
       };
       data.push(product);
     }
