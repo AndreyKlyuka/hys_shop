@@ -1,0 +1,31 @@
+<aside class="sidebar">
+  <section class="sidebar__logo">
+    <div class="sidebar__logo-img"></div>
+  </section>
+  <section class="sidebar__pages">
+    <ul class="sidebar__pages-list">
+      <li class="sidebar__pages-item"
+          [ngClass]="
+                      page === 'users' ?
+                      'sidebar__pages-item_active' :
+                      ''
+                    "
+      >
+        <a routerLink="/admin/users">Users</a>
+      </li>
+      <li class="sidebar__pages-item"
+          [ngClass]="
+                      page === 'products' ?
+                      'sidebar__pages-item_active' :
+                      ''
+                    ">
+        <a routerLink="/admin/products">Products</a>
+      </li>
+      <li class="sidebar__pages-item">
+        <a routerLink="/admin">Log out</a>
+      </li>
+    </ul>
+  </section>
+  <app-footer buttonText="Landing"></app-footer>
+
+</aside>
