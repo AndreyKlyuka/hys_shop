@@ -1,0 +1,41 @@
+@import "utils/variables";
+@import "components/btn";
+
+.card {
+  width: 402px;
+  height: 271px;
+  padding: 30px;
+  background-color: rgb($primary, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  line-height: 44px;
+
+  &__info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+  }
+
+  button {
+    margin-top: auto;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

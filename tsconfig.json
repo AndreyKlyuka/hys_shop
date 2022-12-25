@@ -2,7 +2,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "src",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -22,7 +22,28 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@core/*": ["app/core/*"],
+      "@pages/*": [
+        "app/modules/pages/*"
+      ],
+      "@interfaces/*": [
+        "app/shared/models/interfaces/*"
+      ],
+      "@shared/*": [
+        "app/shared/*"
+      ],
+      "@directives/*": [
+        "app/shared/directives/*"
+      ],
+      "@pipes/*": [
+        "app/shared/pipes/*"
+      ],
+      "@styles/*": [
+        "styles/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

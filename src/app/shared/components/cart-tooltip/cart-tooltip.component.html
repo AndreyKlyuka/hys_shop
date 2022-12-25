@@ -1,0 +1,27 @@
+<div
+  *ngIf="visible$ | async"
+  class="tooltip">
+  <div class="tooltip__items">
+    <div *ngFor="let product of cartProducts" class="tooltip__item">
+      <div class="tooltip__item-description">
+        <div>{{product.name }} {{product.id }}</div>
+
+        <div>{{product.price | uahCurrency}} </div>
+      </div>
+      <div class="tooltip__item-count">
+        <div class="card__count-current">
+          <input type="number" [value]="product.id" min="0">
+        </div>
+      </div>
+      <button (click)="this.cartService.delete(product)">Delete</button>
+
+
+    </div>
+  </div>
+
+  <div
+    class="tooltip__total-price">{{cartProducts.length !== 0 ?
+    'Total price: ' + cartService.getTotalPrice(cartProducts) :
+    'Cart is empty'}}
+  </div>
+</div>

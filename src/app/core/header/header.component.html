@@ -1,0 +1,27 @@
+<header>
+  <div class="header container">
+    <div class="header__logo">
+      <div class="header__logo-img"></div>
+    </div>
+    <nav class="header__menu">
+      <ul class="header__list">
+        <li class="header__menu-item">
+          <a [routerLink]="['/products']">Products</a>
+
+        </li>
+        <li class="header__menu-item cart-item">
+          <a (mouseover)="openTooltip()"
+             (mouseleave)="closeTooltip()"
+             [routerLink]="['/cart']"
+          >Cart</a>
+          <app-cart-tooltip
+            (mouseover)="openTooltip()"
+            (mouseleave)="closeTooltip()"
+          ></app-cart-tooltip>
+
+        </li>
+      </ul>
+    </nav>
+
+  </div>
+</header>

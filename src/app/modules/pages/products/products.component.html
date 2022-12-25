@@ -1,0 +1,16 @@
+<app-header></app-header>
+<main>
+  <section class="products">
+    <h1 class="products__title">Products</h1>
+    <div class="products__cards">
+      <app-product-card
+        *ngFor="let product of products | async"
+        [productData]="product"
+      ></app-product-card>
+    </div>
+    <div class="products__load">
+      <button class="btn btn__product">Load more</button>
+    </div>
+  </section>
+</main>
+<app-footer></app-footer>

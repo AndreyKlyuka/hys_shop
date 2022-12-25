@@ -1,0 +1,30 @@
+<app-header></app-header>
+<main>
+  <section class="cart">
+    <h1 class="cart__title">Cart</h1>
+    <div class="cart__cards">
+      <app-product-card
+        *ngFor="let cartProduct of cartProducts"
+        [productData]="cartProduct"
+      >
+
+        <div class="card__count">
+          <button (click)="changeCount(cartProduct,-1)" [disabled]="getCount(cartProduct) === 1"
+                  class="btn btn__change-count">-
+          </button>
+          <div class="card__count-current">
+            <input type="number" min="1" [value]="getCount(cartProduct)">
+          </div>
+          <button (click)="changeCount(cartProduct,1)" class="btn btn__change-count">+</button>
+        </div>
+
+      </app-product-card>
+
+    </div>
+    <div class="tooltip__total-price">{{cartProducts.length !== 0 ?
+      'Total price: ' + (getTotalPrice(cartProducts) | uahCurrency) :
+      'Cart is empty'}}
+    </div>
+  </section>
+</main>
+<app-footer></app-footer>
