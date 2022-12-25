@@ -36,9 +36,13 @@ export class CartService {
   }
 
   public toggle(product: IProduct) {
-    if (this.latestCarts.filter((prod) => prod.id === product.id).length === 0)
+    if (
+      this.latestCarts.filter((prod) => prod.id === product.id).length === 0
+    ) {
       this.add(product);
-    else this.delete(product);
+    } else {
+      this.delete(product);
+    }
   }
 
   public getTotalPrice(arr: IProduct[]) {
