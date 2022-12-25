@@ -4,7 +4,7 @@
     <h1 class="products__title">Products</h1>
     <div class="products__cards">
       <app-product-card
-        *ngFor="let product of products"
+        *ngFor="let product of products | async"
         [productData]="product"
       ></app-product-card>
     </div>

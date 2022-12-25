@@ -1,18 +1,16 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IProduct } from '@interfaces/product.interface';
 import { ProductsService } from './products.service';
 import { CartService } from '@pages/cart/cart.service';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
 })
-export class ProductsComponent implements OnInit, OnDestroy {
-  public products: IProduct[] = [];
-
-  private subscription!: Subscription;
+export class ProductsComponent implements OnInit {
+  public products!: Observable<IProduct[]>;
 
   constructor(
     private productsService: ProductsService,
@@ -23,12 +21,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.productsService.getFromStorage(8);
     this.cartService.getFromStorage();
 
-    this.subscription = this.productsService.productsChanged$.subscribe(
-      (products) => (this.products = products)
-    );
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.products = this.productsService.productsChanged$;
   }
 }

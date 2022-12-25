@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IProduct } from '@interfaces/product.interface';
 import { CartService } from '@pages/cart/cart.service';
 import { CartTooltipService } from '@shared/components/cart-tooltip/cart-tooltip.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-cart-tooltip',
@@ -10,6 +11,7 @@ import { CartTooltipService } from '@shared/components/cart-tooltip/cart-tooltip
 })
 export class CartTooltipComponent implements OnInit {
   cartProducts: IProduct[] = [];
+  visible$!: Observable<boolean>;
 
   constructor(
     public cartService: CartService,
@@ -21,5 +23,6 @@ export class CartTooltipComponent implements OnInit {
     this.cartService.cartChanged$.subscribe((cartProducts) => {
       this.cartProducts = cartProducts;
     });
+    this.visible$ = this.cartTooltipService.getVisibleObs();
   }
 }
