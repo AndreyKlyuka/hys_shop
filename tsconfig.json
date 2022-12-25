@@ -24,7 +24,9 @@
       "dom"
     ],
     "paths": {
-      "@core/*": ["app/core/*"],
+      "@core/*": [
+        "app/core/*"
+      ],
       "@pages/*": [
         "app/modules/pages/*"
       ],
@@ -33,12 +35,6 @@
       ],
       "@shared/*": [
         "app/shared/*"
-      ],
-      "@directives/*": [
-        "app/shared/directives/*"
-      ],
-      "@pipes/*": [
-        "app/shared/pipes/*"
       ],
       "@styles/*": [
         "styles/*"

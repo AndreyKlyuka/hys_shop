@@ -42,7 +42,10 @@ export class CartService {
   }
 
   public getTotalPrice(arr: IProduct[]) {
-    return arr.reduce((acc, { price }) => acc + price, 0);
+    return arr.reduce(
+      (acc, { price, id }) => acc + price * this.getCount(id),
+      0
+    );
   }
 
   public getFromStorage(key: string = 'cart') {
@@ -56,7 +59,6 @@ export class CartService {
   public setCount(productId: number, value: number) {
     let countersFromStorage: IProductCounter[] =
       this.countLocalStorageService.get('cartCount') || [];
-    console.log(countersFromStorage);
 
     if (value === 0) {
       countersFromStorage = countersFromStorage.filter(
@@ -64,7 +66,7 @@ export class CartService {
       );
     }
     const countPrev = this.getCount(productId);
-    const countCurr = countPrev + value; // fix after get cartCount
+    const countCurr = countPrev + value;
 
     const newElement: IProductCounter = {
       id: productId.toString(),
@@ -86,7 +88,6 @@ export class CartService {
       );
     }
 
-    console.log(countersFromStorage, 'to storage');
     this.countLocalStorageService.set(countersFromStorage, 'cartCount');
   }
 
@@ -97,7 +98,7 @@ export class CartService {
     const count = (counts.find(
       (counterProduct) => +counterProduct.id === productId
     ) as IProductCounter) || { count: 1 };
-    console.log(count.count);
+    // console.log(count.count);
     return count.count;
   }
 

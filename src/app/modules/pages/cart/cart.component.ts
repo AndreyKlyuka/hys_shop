@@ -22,9 +22,6 @@ export class CartComponent implements OnInit, OnDestroy {
   constructor(private cartService: CartService) {}
 
   public changeCount(product: IProduct, value: number) {
-    console.log(product.id);
-    console.log(value);
-
     this.cartService.setCount(product.id, value);
   }
 

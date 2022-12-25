@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 export class ProductsService {
   private productsSubject$ = new BehaviorSubject<IProduct[]>([]);
 
-  public productsChanged$ = this.productsSubject$.asObservable();
+  public products$ = this.productsSubject$.asObservable();
 
   constructor(
     private baseLocalStorageService: BaseLocalStorageService<IProduct[]>

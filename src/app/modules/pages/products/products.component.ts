@@ -23,7 +23,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.productsService.getFromStorage(8);
     this.cartService.getFromStorage();
 
-    this.subscription = this.productsService.productsChanged$.subscribe(
+    this.subscription = this.productsService.products$.subscribe(
       (products) => (this.products = products)
     );
   }

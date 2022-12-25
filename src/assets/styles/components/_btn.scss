@@ -1,10 +1,11 @@
 .btn {
   border: 0;
+  text-decoration: none;
 
   &__product {
     padding: 15px 55px;
     border-radius: 3px;
-    box-shadow: 2px 5px 5px 0px $text-primary;
+    box-shadow: 2px 5px 5px 0 $text-primary;
     background-color: $secondary;
     font-size: $text-small;
   }
