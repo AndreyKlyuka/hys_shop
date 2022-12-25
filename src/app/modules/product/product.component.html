@@ -1,0 +1,6 @@
+<article class="products__card card">
+  <div class="card__product-name">{{ productData.name }}</div>
+  <div class="card__product-price"
+       [productPriceColor]="productData.price">{{ productData.price | uahCurrency}}</div>
+  <button class="card__product-add btn btn__product">Add to cart</button>
+</article>
