@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+<<<<<<< HEAD
 
 import { ProductsComponent } from '@pages/products/products.component';
 import { ProductsModule } from '@pages/products/products.module';
@@ -32,6 +33,13 @@ import { NotFoundComponent } from '@pages/not-found/not-found.component';
   ],
   imports: [BrowserModule, AppRoutingModule, ProductsModule],
   providers: [ProductsService],
+=======
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [BrowserModule, AppRoutingModule],
+  providers: [],
+>>>>>>> main
   bootstrap: [AppComponent],
 })
 export class AppModule {}
