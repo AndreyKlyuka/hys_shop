@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IProduct } from '@interfaces/product.interface';
 import { ProductsService } from './products.service';
 import { CartService } from '@pages/cart/cart.service';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-products',
@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class ProductsComponent implements OnInit, OnDestroy {
   public products: IProduct[] = [];
+  public loader$!: Subject<boolean>;
 
   private subscription!: Subscription;
 
@@ -22,6 +23,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.productsService.getFromStorage(8);
     this.cartService.getFromStorage();
+    this.loader$ = this.productsService.loader;
 
     this.subscription = this.productsService.products$.subscribe(
       (products) => (this.products = products)

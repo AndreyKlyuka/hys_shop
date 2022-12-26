@@ -1,17 +1,26 @@
 import { Injectable } from '@angular/core';
 import { IProduct } from '@interfaces/product.interface';
 import { BaseLocalStorageService } from '@shared/services/base-local-storage.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, delay, tap } from 'rxjs';
 
 @Injectable()
 export class ProductsService {
   private productsSubject$ = new BehaviorSubject<IProduct[]>([]);
+  public loading$ = new BehaviorSubject<boolean>(false);
 
-  public products$ = this.productsSubject$.asObservable();
+  public products$ = this.productsSubject$.asObservable().pipe(
+    tap(() => this.loading$.next(true)),
+    delay(2000),
+    tap(() => this.loading$.next(false))
+  );
 
   constructor(
     private baseLocalStorageService: BaseLocalStorageService<IProduct[]>
   ) {}
+
+  get loader() {
+    return this.loading$;
+  }
 
   public getFromStorage(length: number = 8, key: string = 'products') {
     if (!localStorage.getItem(key)) {
