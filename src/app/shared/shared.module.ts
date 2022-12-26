@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+
 import { CommonModule } from '@angular/common';
 
 import { UahCurrencyPipe } from '@shared/pipes/uah-currency.pipe';
@@ -17,10 +18,12 @@ import { HomeComponent } from '@pages/home/home.component';
 import { ProductsService } from '@pages/products/products.service';
 import { ProductsComponent } from '@pages/products/products.component';
 
+
 @NgModule({
   declarations: [
     UahCurrencyPipe,
     PriceColorDirective,
+
     FooterComponent,
     HeaderComponent,
     CartTooltipComponent,
@@ -50,5 +53,6 @@ import { ProductsComponent } from '@pages/products/products.component';
     HomeComponent,
     ProductsComponent,
   ],
+
 })
 export class SharedModule {}
