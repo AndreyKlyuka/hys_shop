@@ -1,5 +1,10 @@
 <div class="wrapper">
   <app-admin-sidebar page="users"></app-admin-sidebar>
 
-  <main class="">USERS</main>
+  <main class="users-admin">
+    <h2 class="users-admin__title"> Users </h2>
+    <app-admin-table
+      [options]="tableOptions"
+    ></app-admin-table>
+  </main>
 </div>

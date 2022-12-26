@@ -7,6 +7,7 @@ import { HeaderComponent } from '@core/header/header.component';
 import { CartTooltipComponent } from '@shared/components/cart-tooltip/cart-tooltip.component';
 import { RouterLink } from '@angular/router';
 import { AdminSidebarComponent } from './components/admin-sidebar/admin-sidebar.component';
+import { AdminTableComponent } from './components/admin-table/admin-table.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { AdminSidebarComponent } from './components/admin-sidebar/admin-sidebar.
     HeaderComponent,
     CartTooltipComponent,
     AdminSidebarComponent,
+    AdminTableComponent,
   ],
   imports: [CommonModule, RouterLink],
   exports: [
@@ -25,6 +27,7 @@ import { AdminSidebarComponent } from './components/admin-sidebar/admin-sidebar.
     HeaderComponent,
     CartTooltipComponent,
     AdminSidebarComponent,
+    AdminTableComponent,
   ],
 })
 export class SharedModule {}

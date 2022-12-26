@@ -1,0 +1,95 @@
+@import "utils/variables";
+@import "components/btn";
+
+.table {
+  &__inputs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+
+    &-search {
+      width: 480px;
+
+      input {
+        width: 100%;
+      }
+    }
+
+    &-filter {
+      display: flex;
+      justify-content: space-between;
+      width: 720px;
+    }
+  }
+
+  &__input {
+    &-select,
+    &-value {
+      min-width: 200px;
+    }
+
+    &-apply {
+      min-width: 150px;
+    }
+  }
+
+  &__container {
+    width: 100%;
+  }
+
+  &__row {
+    height: 90px;
+    background-color: $secondary;
+    color: $primary;
+  }
+
+  &__data-btns {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  td {
+    padding: 0 10px;
+    text-align: start;
+    width: 30%;
+  }
+
+  td:last-child {
+    width: 10%;
+    text-align: end;
+  }
+
+  &__pagination {
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
+    margin-top: 30px;
+
+    &-btns {
+      width: 10%;
+      display: flex;
+      justify-content: space-around;
+      gap: 20px;
+    }
+
+    &-btn {
+      background-color: $secondary;
+    }
+  }
+
+  &__btn {
+    &-edit {
+      background-color: turquoise;
+    }
+
+    &-delete {
+      background-color: orangered;
+    }
+  }
+}
+
+input,
+select {
+  background-color: $secondary;
+  border-radius: 5px;
+}

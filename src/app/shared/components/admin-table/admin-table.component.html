@@ -1,0 +1,55 @@
+<section class="table">
+  <div class="table__inputs">
+    <div class="table__inputs-search">
+      <input type="text" placeholder="Search..">
+    </div>
+    <div class="table__inputs-filter">
+      <select class="table__input-select" name="filter-param">
+        <option value=">">More than</option>
+        <option value="<">Less then</option>
+        <option value="=">Equal</option>
+      </select>
+      <input class="table__input-value" type="number" min="0">
+      <input class="table__input-apply" type="submit" value="Apply">
+    </div>
+
+  </div>
+  <table class="table__container">
+    <tr class="table__header">
+      <td class="table__header">ID</td>
+      <td class="table__header">Name</td>
+      <td class="table__header">{{options.filter}}</td>
+      <td class="table__header">Add</td>
+    </tr>
+    <tr *ngFor="let product of products" class="table__row">
+      <td class="table__data">{{product.id}}</td>
+      <td class="table__data">{{product.name}}</td>
+      <td class="table__data">{{product.price}}</td>
+      <td class="table__data">
+        <div class="table__data-btns">
+          <button class="table__btn-edit btn btn__admin-pagination">
+            <object data="assets/images/edit.svg"
+                    width="35px" height="35px"></object>
+          </button>
+          <button class="table__btn-delete btn btn__admin-pagination">
+            <object data="assets/images/delete.svg"
+                    width="35px" height="35px"></object>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <div class="table__pagination">
+    <div class="table__pagination-counter">1/10</div>
+    <div class="table__pagination-btns">
+      <button class="table__pagination-btn btn btn__admin-pagination">
+        <object data="assets/images/arrow-left.svg"
+                width="35px" height="35px"></object>
+      </button>
+      <button class="table__pagination-btn btn btn__admin-pagination">
+        <object data="assets/images/arrow-right.svg"
+                width="35px" height="35px"></object>
+      </button>
+    </div>
+  </div>
+</section>
