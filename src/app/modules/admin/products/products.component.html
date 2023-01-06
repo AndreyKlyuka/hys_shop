@@ -1,9 +1,11 @@
 <div class="wrapper">
-  <app-admin-sidebar page="products"></app-admin-sidebar>
+  <app-sidebar page="products"></app-sidebar>
 
   <main class="products-admin">
     <h2 class="products-admin__title"> Products </h2>
-    <app-admin-table [products]="allProducts"
-                     [options]="tableOptions"></app-admin-table>
+    <app-table
+      [options]="tableOptions">
+    </app-table>
+    <app-spinner-loader *ngIf="(loader$ | async)"></app-spinner-loader>
   </main>
 </div>

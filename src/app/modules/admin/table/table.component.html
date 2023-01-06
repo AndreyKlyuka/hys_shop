@@ -1,0 +1,63 @@
+<section class="table">
+  <div class="table__inputs">
+    <app-search-filter></app-search-filter>
+    <app-count-filter></app-count-filter>
+  </div>
+  <table class="table__container">
+    <tr class="table__header">
+      <td class="table__header-item" (click)="sortById()">
+        ID
+        <img *ngIf="!idSortingDirection" src="../../../../assets/images/arrow-sort.svg"
+             class="table__arrow arrow-up" alt="arrow">
+        <img *ngIf="idSortingDirection" src="../../../../assets/images/arrow-sort.svg"
+             class="table__arrow arrow-down" alt="arrow">
+
+      </td>
+      <td class="table__header-item" (click)="sortByName()">
+        Name
+        <img *ngIf="!nameSortingDirection" src="../../../../assets/images/arrow-sort.svg"
+             class="table__arrow arrow-up" alt="arrow">
+        <img *ngIf="nameSortingDirection" src="../../../../assets/images/arrow-sort.svg"
+             class="table__arrow arrow-down" alt="arrow">
+      </td>
+      <td class="table__header-item" (click)="sortByPrice()">
+        {{options.filterBy}}
+        <img *ngIf="!priceSortingDirection" src="../../../../assets/images/arrow-sort.svg"
+             class="table__arrow arrow-up" alt="arrow">
+        <img *ngIf="priceSortingDirection" src="../../../../assets/images/arrow-sort.svg"
+             class="table__arrow arrow-down" alt="arrow">
+      </td>
+      <td class="table__header-item" (click)="addProduct()">Add</td>
+    </tr>
+    <tr *ngFor="let product of currentProducts" class="table__row">
+      <td class="table__data">{{product.id}}</td>
+      <td class="table__data">{{product.name}}</td>
+      <td class="table__data">{{product.price}}</td>
+      <td class="table__data">
+        <div class="table__data-btns">
+          <button class="table__btn-edit btn btn__admin-pagination" (click)="editProduct(product)">
+            <img src="../../../../assets/images/edit.svg"
+                 width="35px" height="35px" alt="edit">
+          </button>
+          <button class="table__btn-delete btn btn__admin-pagination" (click)="deleteProduct(product)">
+            <img src="../../../../assets/images/delete.svg"
+                 width="35px" height="35px" alt="delete">
+          </button>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <div class="table__pagination">
+    <div class="table__pagination-counter">{{currentPage}}/{{totalPages}}</div>
+    <div class="table__pagination-btns">
+      <button class="table__pagination-btn btn btn__admin-pagination" (click)="prevPage()">
+        <img src="../../../../assets/images/arrow-left.svg" alt="arrow"
+             width="35px" height="35px">
+      </button>
+      <button class="table__pagination-btn btn btn__admin-pagination" (click)="nextPage()">
+        <img src="../../../../assets/images/arrow-right.svg" alt="arrow"
+             width="35px" height="35px">
+      </button>
+    </div>
+  </div>
+</section>

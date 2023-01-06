@@ -9,8 +9,6 @@
     </div>
     <ng-content></ng-content>
   </div>
-
-
   <button (click)="toggleProduct()"
           [ngClass]="{'btn__in-cart': inCart}"
           class="card__product-add btn btn__product">{{ inCart ? 'Remove from cart' : 'Add to cart'}}

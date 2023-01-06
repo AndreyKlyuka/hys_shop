@@ -1,0 +1,23 @@
+<section class="modal">
+  <h3 class="modal__title">{{data.title}} {{data.id}} ?</h3>
+
+  <form *ngIf="!data.delete" class="modal__form form">
+    <div class="form__item">
+      <label>Name</label>
+      <input [(ngModel)]="name" class="form__input" type="text" name="name" placeholder="Name"/>
+    </div>
+    <div class="form__item">
+      <label>Price</label>
+      <input [(ngModel)]="price" class="form__input" type="number" name="price" placeholder="Price"/>
+    </div>
+    <div class="form__item">
+      <label>Description</label>
+      <input [(ngModel)]="description" class="form__input" type="text" name="description"
+             placeholder="Description"/>
+    </div>
+  </form>
+  <div class="modal__buttons">
+    <button (click)="submit()" class="send-btn btn">Ok</button>
+    <button (click)="cancel()" class="send-btn btn">Cancel</button>
+  </div>
+</section>

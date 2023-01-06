@@ -2,6 +2,13 @@
 @import "components/btn";
 
 .table {
+  &__arrow {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    fill: #fccc47;
+  }
+
   &__inputs {
     display: flex;
     justify-content: space-between;
@@ -92,4 +99,8 @@ input,
 select {
   background-color: $secondary;
   border-radius: 5px;
+}
+
+.arrow-up {
+  rotate: 180deg;
 }
