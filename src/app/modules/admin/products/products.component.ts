@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '@pages/products/products.service';
 import { IProduct } from '@interfaces/product.interface';
 import { TableOptions } from '@interfaces/table-options.interface';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-products',
@@ -10,9 +10,10 @@ import { Subject } from 'rxjs';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
-  public allProducts: IProduct[] = [];
+  public allProducts$!: Observable<IProduct[]>;
   public tableOptions: TableOptions = {
-    filter: 'Price',
+    filterBy: 'Price',
+    itemsOnPage: 5,
   };
   public loader$!: Subject<boolean>;
 
@@ -20,9 +21,7 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.productService.getFromStorage();
-    this.productService.products$.subscribe(
-      (products) => (this.allProducts = products.slice(0, 5))
-    );
+    this.allProducts$ = this.productService.products$;
     this.loader$ = this.productService.loader;
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IProduct } from '@interfaces/product.interface';
 import { BaseLocalStorageService } from '@shared/services/base-local-storage.service';
-import { BehaviorSubject, delay, tap } from 'rxjs';
+import { BehaviorSubject, tap } from 'rxjs';
 
 @Injectable()
 export class ProductsService {
@@ -10,7 +10,7 @@ export class ProductsService {
 
   public products$ = this.productsSubject$.asObservable().pipe(
     tap(() => this.loading$.next(true)),
-    delay(2000),
+    // delay(2000),
     tap(() => this.loading$.next(false))
   );
 

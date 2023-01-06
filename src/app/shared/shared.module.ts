@@ -7,8 +7,8 @@ import { FooterComponent } from '@core/footer/footer.component';
 import { HeaderComponent } from '@core/header/header.component';
 import { CartTooltipComponent } from '@shared/components/cart-tooltip/cart-tooltip.component';
 import { RouterLink } from '@angular/router';
-import { AdminSidebarComponent } from './components/admin-sidebar/admin-sidebar.component';
-import { AdminTableComponent } from './components/admin-table/admin-table.component';
+import { SidebarComponent } from '../modules/admin/sidebar/sidebar.component';
+import { TableComponent } from '../modules/admin/table/table.component';
 import { NotFoundComponent } from '@pages/not-found/not-found.component';
 import { CartComponent } from '@pages/cart/cart.component';
 import { ProductCardComponent } from '@shared/components/product-card/product-card.component';
@@ -18,6 +18,9 @@ import { ProductsService } from '@pages/products/products.service';
 import { ProductsComponent } from '@pages/products/products.component';
 import { SpinnerLoaderComponent } from './components/spinner-loader/spinner-loader.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SearchFilterComponent } from '../modules/admin/search-filter/search-filter.component';
+import { CountFilterComponent } from '../modules/admin/count-filter/count-filter.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,8 +29,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     FooterComponent,
     HeaderComponent,
     CartTooltipComponent,
-    AdminSidebarComponent,
-    AdminTableComponent,
+    SidebarComponent,
+    TableComponent,
     NotFoundComponent,
     CartComponent,
     ProductCardComponent,
@@ -35,17 +38,24 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     HomeComponent,
     ProductsComponent,
     SpinnerLoaderComponent,
+    SearchFilterComponent,
+    CountFilterComponent,
   ],
   providers: [ProductsService],
-  imports: [CommonModule, RouterLink, MatProgressSpinnerModule],
+  imports: [
+    CommonModule,
+    RouterLink,
+    MatProgressSpinnerModule,
+    ReactiveFormsModule,
+  ],
   exports: [
     UahCurrencyPipe,
     PriceColorDirective,
     FooterComponent,
     HeaderComponent,
     CartTooltipComponent,
-    AdminSidebarComponent,
-    AdminTableComponent,
+    SidebarComponent,
+    TableComponent,
     NotFoundComponent,
     CartComponent,
     ProductCardComponent,
@@ -53,6 +63,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     HomeComponent,
     ProductsComponent,
     SpinnerLoaderComponent,
+    SearchFilterComponent,
+    CountFilterComponent,
   ],
 })
 export class SharedModule {}

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { TableOptions } from '@interfaces/table-options.interface';
 
 @Component({
   selector: 'app-users',
@@ -7,7 +6,7 @@ import { TableOptions } from '@interfaces/table-options.interface';
   styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent {
-  public tableOptions: TableOptions = {
-    filter: 'Created',
-  };
+  // public tableOptions: TableOptions = {
+  //   filterBy: 'Created',
+  // };
 }
