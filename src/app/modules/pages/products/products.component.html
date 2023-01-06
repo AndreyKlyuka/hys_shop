@@ -1,6 +1,8 @@
 <app-header></app-header>
 <main>
-  <section class="products">
+  <section class="products"
+           *ngIf="!(loader$ | async)"
+  >
     <h1 class="products__title">Products</h1>
     <div class="products__cards">
       <app-product-card
@@ -12,6 +14,8 @@
       <button class="btn btn__product">Load more</button>
     </div>
   </section>
+  <app-spinner-loader *ngIf="(loader$ | async)"></app-spinner-loader>
+
 </main>
 <app-footer buttonText="Admin"></app-footer>
 

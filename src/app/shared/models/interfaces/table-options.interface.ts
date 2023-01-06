@@ -1,3 +1,5 @@
 export interface TableOptions {
-  filter: string;
+  filterBy: string;
+  page?: number;
+  itemsOnPage: number;
 }
