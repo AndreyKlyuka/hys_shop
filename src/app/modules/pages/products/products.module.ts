@@ -3,9 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { ProductsRoutingModule } from './products-routing.module';
 
+
 @NgModule({
   declarations: [],
   imports: [CommonModule, ProductsRoutingModule],
   providers: [],
+
 })
 export class ProductsModule {}

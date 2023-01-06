@@ -1,19 +1,23 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, debounceTime, Subject } from 'rxjs';
+import { BehaviorSubject, debounceTime, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartTooltipService {
-  isVisible$ = new BehaviorSubject(false).pipe(debounceTime(500));
+  public isVisible$ = new BehaviorSubject(false);
 
   constructor() {}
 
+  public getVisibleObs(): Observable<boolean> {
+    return this.isVisible$.asObservable().pipe(debounceTime(500));
+  }
+
   public open() {
-    (this.isVisible$ as Subject<boolean>).next(true);
+    this.isVisible$.next(true);
   }
 
   public close() {
-    (this.isVisible$ as Subject<boolean>).next(false);
+    this.isVisible$.next(false);
   }
 }
