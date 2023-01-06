@@ -1,0 +1,21 @@
+@import "utils/variables";
+
+.wrapper {
+  display: flex;
+}
+
+.users-admin {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  padding: 50px;
+
+  &__title {
+    margin-bottom: 50px;
+  }
+}
+
+app-admin-table {
+  background-color: $primary;
+  padding: 40px 30px;
+}

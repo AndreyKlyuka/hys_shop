@@ -1,0 +1,9 @@
+<div class="wrapper">
+  <app-admin-sidebar page="products"></app-admin-sidebar>
+
+  <main class="products-admin">
+    <h2 class="products-admin__title"> Products </h2>
+    <app-admin-table [products]="allProducts"
+                     [options]="tableOptions"></app-admin-table>
+  </main>
+</div>

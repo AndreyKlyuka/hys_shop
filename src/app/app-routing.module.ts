@@ -11,9 +11,12 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
+    path: 'home',
+    redirectTo: '',
+  },
+  {
     path: 'products',
 
-    pathMatch: 'full',
     loadChildren: () =>
       import('./modules/pages/products/products.module').then(
         (m) => m.ProductsModule
@@ -22,6 +25,11 @@ const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent,
+  },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./modules/admin/admin.module').then((m) => m.AdminModule),
   },
   {
     path: '**',

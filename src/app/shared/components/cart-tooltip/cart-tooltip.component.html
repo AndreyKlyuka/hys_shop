@@ -10,7 +10,7 @@
       </div>
       <div class="tooltip__item-count">
         <div class="card__count-current">
-          <input type="number" [value]="product.id" min="0">
+          <input type="number" [value]="getCount(product)" min="0">
         </div>
       </div>
       <button (click)="this.cartService.delete(product)">Delete</button>
@@ -21,7 +21,7 @@
 
   <div
     class="tooltip__total-price">{{cartProducts.length !== 0 ?
-    'Total price: ' + cartService.getTotalPrice(cartProducts) :
+    'Total price: ' + (getTotalPrice(cartProducts) | uahCurrency) :
     'Cart is empty'}}
   </div>
 </div>

@@ -18,6 +18,14 @@ export class CartTooltipComponent implements OnInit {
     public cartTooltipService: CartTooltipService
   ) {}
 
+  public getTotalPrice(cartProducts: IProduct[]) {
+    return this.cartService.getTotalPrice(cartProducts);
+  }
+
+  public getCount(product: IProduct): number {
+    return this.cartService.getCount(product.id);
+  }
+
   ngOnInit() {
     this.cartService.getFromStorage();
     this.cartService.cartChanged$.subscribe((cartProducts) => {

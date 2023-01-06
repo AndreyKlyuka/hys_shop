@@ -21,6 +21,14 @@ export class ProductsComponent implements OnInit {
     this.productsService.getFromStorage(8);
     this.cartService.getFromStorage();
 
-    this.products = this.productsService.productsChanged$;
+
+    this.subscription = this.productsService.products$.subscribe(
+      (products) => (this.products = products)
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+
   }
 }

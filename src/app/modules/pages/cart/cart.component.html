@@ -4,18 +4,18 @@
     <h1 class="cart__title">Cart</h1>
     <div class="cart__cards">
       <app-product-card
-        *ngFor="let cartProduct of cartProducts"
-        [productData]="cartProduct"
+        *ngFor="let product of cartProducts"
+        [productData]="product"
       >
 
         <div class="card__count">
-          <button (click)="changeCount(cartProduct,-1)" [disabled]="getCount(cartProduct) === 1"
+          <button (click)="changeCount(product,-1)" [disabled]="getCount(product) === 1"
                   class="btn btn__change-count">-
           </button>
           <div class="card__count-current">
-            <input type="number" min="1" [value]="getCount(cartProduct)">
+            <input type="number" min="1" [value]="getCount(product)">
           </div>
-          <button (click)="changeCount(cartProduct,1)" class="btn btn__change-count">+</button>
+          <button (click)="changeCount(product,1)" class="btn btn__change-count">+</button>
         </div>
 
       </app-product-card>
@@ -27,4 +27,4 @@
     </div>
   </section>
 </main>
-<app-footer></app-footer>
+<app-footer buttonText="Admin"></app-footer>

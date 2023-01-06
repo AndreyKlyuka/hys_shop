@@ -1,2 +1,28 @@
 @import "utils/variables";
 @import "components/btn";
+
+.home {
+  max-width: $container;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    margin-top: 163px;
+  }
+
+  &__sub-title {
+    margin-top: 45px;
+  }
+
+  &__cards {
+    display: flex;
+    gap: 39px;
+    margin: 78px 0 78px 0;
+  }
+
+  &__btn {
+    margin-bottom: 68px;
+  }
+}

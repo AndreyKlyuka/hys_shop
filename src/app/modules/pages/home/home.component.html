@@ -1,4 +1,17 @@
 <app-header></app-header>
-<div>home page here</div>
-<button class="btn btn__product" routerLink="products">See all list</button>
-<app-footer></app-footer>
+<main class="home container">
+  <h1 class="home__title">Welcome to the shop!</h1>
+  <h2 class="home__sub-title">Top our products:</h2>
+
+  <section class="home__cards">
+    <app-product-card *ngFor="let product of topProducts"
+                      [productData]="product"
+    ></app-product-card>
+  </section>
+
+
+  <button class="home__btn btn btn__product" routerLink="products">See all list</button>
+</main>
+
+<app-footer buttonText="Admin"></app-footer>
+
