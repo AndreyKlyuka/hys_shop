@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+
 import { CommonModule } from '@angular/common';
 
 import { UahCurrencyPipe } from '@shared/pipes/uah-currency.pipe';
@@ -22,10 +23,12 @@ import { SearchFilterComponent } from '../modules/admin/search-filter/search-fil
 import { CountFilterComponent } from '../modules/admin/count-filter/count-filter.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     UahCurrencyPipe,
     PriceColorDirective,
+
     FooterComponent,
     HeaderComponent,
     CartTooltipComponent,
@@ -66,5 +69,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     SearchFilterComponent,
     CountFilterComponent,
   ],
+
 })
 export class SharedModule {}

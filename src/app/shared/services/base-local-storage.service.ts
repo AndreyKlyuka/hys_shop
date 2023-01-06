@@ -11,11 +11,11 @@ export class BaseLocalStorageService<T> {
     return JSON.parse(localStorage.getItem(key)!);
   }
 
-  public set(value: T, key: string) {
+  public set(value: unknown, key: string) {
     localStorage.setItem(key, JSON.stringify(value));
   }
 
-  private createField(key: string, value: null) {
-    localStorage.setItem(key, JSON.stringify(value));
-  }
+  // private createField(key: string, value: null) {
+  //   localStorage.setItem(key, JSON.stringify(value));
+  // }
 }
