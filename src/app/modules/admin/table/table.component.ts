@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { IProduct } from '@interfaces/product.interface';
 import { TableOptions } from '@interfaces/table-options.interface';
 import { FilterService } from '../services/filter.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-table',
@@ -21,7 +23,7 @@ export class TableComponent implements OnInit {
   public currentPage: number = 1;
   public totalPages: number = 0;
 
-  constructor(private filterService: FilterService) {}
+  constructor(private filterService: FilterService, private modal: MatDialog) {}
 
   ngOnInit() {
     this.filterService.getSortedBySearch();
@@ -84,5 +86,48 @@ export class TableComponent implements OnInit {
       this.currentPage * this.options.itemsOnPage - this.options.itemsOnPage,
       this.options.itemsOnPage * this.currentPage
     );
+  }
+
+  public addProduct() {
+    const dialog = this.modal.open(ModalComponent, {
+      height: '600px',
+      width: '700px',
+      data: {
+        title: 'Add product',
+        name: '',
+        id: Math.trunc(Math.random() * 10 ** 9),
+        price: 0,
+        delete: false,
+      },
+    });
+    dialog.afterClosed().subscribe((value) => console.log(value));
+  }
+
+  public editProduct(product: IProduct) {
+    const editDialog = this.modal.open(ModalComponent, {
+      height: '600px',
+      width: '700px',
+      data: {
+        title: ' Edit Product',
+        name: product.name,
+        id: product.id,
+        price: product.price,
+        delete: false,
+      },
+    });
+    editDialog.afterClosed().subscribe((value) => console.log(value));
+  }
+
+  public deleteProduct(product: IProduct) {
+    let deleteDialog = this.modal.open(ModalComponent, {
+      height: '230px',
+      width: '700px',
+      data: {
+        title: 'Delete product',
+        id: product.id,
+        delete: true,
+      },
+    });
+    deleteDialog.afterClosed().subscribe((value) => console.log(value));
   }
 }

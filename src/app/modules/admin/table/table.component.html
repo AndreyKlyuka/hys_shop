@@ -27,7 +27,7 @@
         <img *ngIf="priceSortingDirection" src="../../../../assets/images/arrow-sort.svg"
              class="table__arrow arrow-down" alt="arrow">
       </td>
-      <td class="table__header-item">Add</td>
+      <td class="table__header-item" (click)="addProduct()">Add</td>
     </tr>
     <tr *ngFor="let product of currentProducts" class="table__row">
       <td class="table__data">{{product.id}}</td>
@@ -35,13 +35,13 @@
       <td class="table__data">{{product.price}}</td>
       <td class="table__data">
         <div class="table__data-btns">
-          <button class="table__btn-edit btn btn__admin-pagination">
-            <object data="../../../../assets/images/edit.svg"
-                    width="35px" height="35px"></object>
+          <button class="table__btn-edit btn btn__admin-pagination" (click)="editProduct(product)">
+            <img src="../../../../assets/images/edit.svg"
+                 width="35px" height="35px" alt="edit">
           </button>
-          <button class="table__btn-delete btn btn__admin-pagination">
-            <object data="../../../../assets/images/delete.svg"
-                    width="35px" height="35px"></object>
+          <button class="table__btn-delete btn btn__admin-pagination" (click)="deleteProduct(product)">
+            <img src="../../../../assets/images/delete.svg"
+                 width="35px" height="35px" alt="delete">
           </button>
         </div>
       </td>
