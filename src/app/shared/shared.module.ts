@@ -17,6 +17,8 @@ import { ProductComponent } from '@pages/product/product.component';
 import { HomeComponent } from '@pages/home/home.component';
 import { ProductsService } from '@pages/products/products.service';
 import { ProductsComponent } from '@pages/products/products.component';
+import { SpinnerLoaderComponent } from './components/spinner-loader/spinner-loader.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -35,9 +37,10 @@ import { ProductsComponent } from '@pages/products/products.component';
     ProductComponent,
     HomeComponent,
     ProductsComponent,
+    SpinnerLoaderComponent,
   ],
   providers: [ProductsService],
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, MatProgressSpinnerModule],
   exports: [
     UahCurrencyPipe,
     PriceColorDirective,
@@ -52,6 +55,7 @@ import { ProductsComponent } from '@pages/products/products.component';
     ProductComponent,
     HomeComponent,
     ProductsComponent,
+    SpinnerLoaderComponent,
   ],
 
 })
