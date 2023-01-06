@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+
 import { CommonModule } from '@angular/common';
 
 import { UahCurrencyPipe } from '@shared/pipes/uah-currency.pipe';
@@ -19,10 +20,12 @@ import { ProductsComponent } from '@pages/products/products.component';
 import { SpinnerLoaderComponent } from './components/spinner-loader/spinner-loader.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
+
 @NgModule({
   declarations: [
     UahCurrencyPipe,
     PriceColorDirective,
+
     FooterComponent,
     HeaderComponent,
     CartTooltipComponent,
@@ -54,5 +57,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ProductsComponent,
     SpinnerLoaderComponent,
   ],
+
 })
 export class SharedModule {}
