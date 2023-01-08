@@ -44,8 +44,6 @@ export class TableComponent implements OnInit {
       this.totalPages = Math.ceil(
         this.allProducts.length / this.options.itemsOnPage
       );
-      console.log(this.totalPages);
-      console.log(this.allProducts.length);
 
       this.arrowHandler();
     });
@@ -127,10 +125,20 @@ export class TableComponent implements OnInit {
         name: product.name,
         id: product.id,
         price: product.price,
+        // description:
         delete: false,
       },
     });
-    editDialog.afterClosed().subscribe((value) => console.log(value));
+    editDialog.afterClosed().subscribe((value) => {
+      if (!value) return;
+      const edited = (({ id, ...object }) => object)(value);
+
+      this.productsHTTPService
+        .update<INewProduct>(product.id, edited)
+        .subscribe((data) => {
+          this.ngOnInit();
+        });
+    });
   }
 
   public deleteProduct(product: IProduct) {
@@ -140,6 +148,7 @@ export class TableComponent implements OnInit {
       data: {
         title: 'Delete product',
         id: product.id,
+        // de
         delete: true,
       },
     });

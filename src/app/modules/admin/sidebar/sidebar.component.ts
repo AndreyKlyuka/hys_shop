@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { BaseLocalStorageService } from '@shared/services/base-local-storage.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,4 +9,12 @@ import { Component, Input } from '@angular/core';
 export class SidebarComponent {
   @Input()
   public page: string = '';
+
+  constructor(
+    private authLocalStorageService: BaseLocalStorageService<string>
+  ) {}
+
+  public logout() {
+    this.authLocalStorageService.set('', 'token');
+  }
 }

@@ -15,11 +15,12 @@ export class ModalComponent implements OnInit {
     public dialogRef: MatDialogRef<ModalComponent>,
     @Inject(MAT_DIALOG_DATA)
     public data: {
-      title: string;
       delete: boolean;
+      title: string;
       name?: string;
       id?: number;
       price?: number;
+      description?: string;
     }
   ) {}
 
@@ -43,5 +44,6 @@ export class ModalComponent implements OnInit {
   ngOnInit(): void {
     this.name = this.data.name!;
     this.price = this.data.price!;
+    this.description = this.data.description!;
   }
 }
