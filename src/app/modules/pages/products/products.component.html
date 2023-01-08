@@ -1,4 +1,3 @@
-<app-header></app-header>
 <main *ngIf="(products$ | async)">
   <section class="products">
     <h1 class="products__title">Products</h1>
@@ -14,5 +13,5 @@
   </section>
 </main>
 <app-spinner-loader *ngIf="!(products$ | async)"></app-spinner-loader>
-<app-footer buttonText="Admin"></app-footer>
+
 

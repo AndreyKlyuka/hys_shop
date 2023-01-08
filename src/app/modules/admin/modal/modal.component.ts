@@ -28,7 +28,6 @@ export class ModalComponent implements OnInit {
       this.dialogRef.close(true);
       return;
     }
-
     this.dialogRef.close({
       name: this.name,
       id: this.data.id,
@@ -38,7 +37,7 @@ export class ModalComponent implements OnInit {
   }
 
   public cancel() {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 
   ngOnInit(): void {

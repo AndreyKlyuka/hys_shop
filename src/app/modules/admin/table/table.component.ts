@@ -1,9 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IProduct } from '@interfaces/product.interface';
+import { INewProduct } from '@interfaces/new-product.interface';
 import { TableOptions } from '@interfaces/table-options.interface';
 import { FilterService } from '../services/filter.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
+import { ProductsHttpService } from '@pages/products/products-http.service';
 
 @Component({
   selector: 'app-table',
@@ -23,7 +25,11 @@ export class TableComponent implements OnInit {
   public currentPage: number = 1;
   public totalPages: number = 0;
 
-  constructor(private filterService: FilterService, private modal: MatDialog) {}
+  constructor(
+    private filterService: FilterService,
+    private productsHTTPService: ProductsHttpService,
+    private modal: MatDialog
+  ) {}
 
   ngOnInit() {
     this.filterService.getSortedBySearch();
@@ -35,9 +41,11 @@ export class TableComponent implements OnInit {
         this.options.itemsOnPage * this.currentPage
       );
 
-      this.totalPages = Math.round(products.length / this.options.itemsOnPage)
-        ? Math.round(products.length / this.options.itemsOnPage)
-        : 1;
+      this.totalPages = Math.ceil(
+        this.allProducts.length / this.options.itemsOnPage
+      );
+      console.log(this.totalPages);
+      console.log(this.allProducts.length);
 
       this.arrowHandler();
     });
@@ -65,11 +73,7 @@ export class TableComponent implements OnInit {
   }
 
   public nextPage() {
-    if (
-      this.currentPage >=
-      Math.round(this.allProducts.length / this.options.itemsOnPage)
-    )
-      return;
+    if (this.currentPage >= this.totalPages) return;
     this.currentPage++;
     this.filterService._pageCounter$.next(this.currentPage);
     this.currentProducts = this.allProducts.slice(
@@ -99,7 +103,19 @@ export class TableComponent implements OnInit {
         delete: false,
       },
     });
-    dialog.afterClosed().subscribe((value) => console.log(value));
+    dialog.afterClosed().subscribe((value) => {
+      if (!value) return;
+      const newProduct: INewProduct = {
+        name: value.name,
+        price: value.price,
+        description: value.description,
+      };
+      this.productsHTTPService
+        .create<INewProduct>(newProduct)
+        .subscribe((data) => {
+          this.ngOnInit();
+        });
+    });
   }
 
   public editProduct(product: IProduct) {
@@ -127,6 +143,10 @@ export class TableComponent implements OnInit {
         delete: true,
       },
     });
-    deleteDialog.afterClosed().subscribe((value) => console.log(value));
+    deleteDialog.afterClosed().subscribe((value) => {
+      this.productsHTTPService.delete(product.id).subscribe((data) => {
+        this.ngOnInit();
+      });
+    });
   }
 }

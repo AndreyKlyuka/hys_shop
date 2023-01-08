@@ -28,3 +28,13 @@
     justify-content: center;
   }
 }
+
+.wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  &__login {
+    flex: 1 1 auto;
+  }
+}

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +9,11 @@ export class BaseHttpService {
   protected path = '';
   private URL = 'https://hys-fe-course-api.vercel.app/';
 
-  constructor(private http: HttpClient, private modal: MatDialog) {}
+  authHeaders = new HttpHeaders({
+    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJmMjc4ODU3Ny1lMTllLTQzMGUtYTAyZC1lNWU0MTNhMDdkZGIiLCJ1c2VybmFtZSI6ImRyYWdhbm92IiwicGFzc3dvcmQiOiIkMmIkMTAkMUpQRWhWNzd6YnhWalR5UVhySkpUdXI4Z3M2TVlTbTRNTGZqWElFRU1tMDc1SU5YUlg2Vk8iLCJjcmVhdGVkQXQiOiIyMDIyLTEyLTI4VDA5OjI1OjE4LjE3MFoiLCJ1cGRhdGVkQXQiOiIyMDIyLTEyLTI4VDA5OjI1OjE4LjE3MFoiLCJpYXQiOjE2NzIzODYxMjksImV4cCI6MTY3MjQ3MjUyOX0.ArkYEq25jMrOUi8iTo9aBoeAlSykAr6vbsYriJlYT7o`,
+  });
+
+  constructor(private http: HttpClient) {}
 
   public getAll<T>(): Observable<T> {
     return this.http
