@@ -9,7 +9,6 @@ import { ProductsComponent } from './products/products.component';
 import { LoginComponent } from './login/login.component';
 import { ModalComponent } from './modal/modal.component';
 import { FormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -19,13 +18,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     LoginComponent,
     ModalComponent,
   ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    SharedModule,
-    FormsModule,
-    MatDialogModule,
-  ],
+  imports: [CommonModule, AdminRoutingModule, SharedModule, FormsModule],
+  providers: [],
   exports: [],
 })
 export class AdminModule {}

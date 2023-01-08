@@ -14,13 +14,15 @@ import { CartComponent } from '@pages/cart/cart.component';
 import { ProductCardComponent } from '@shared/components/product-card/product-card.component';
 import { ProductComponent } from '@pages/product/product.component';
 import { HomeComponent } from '@pages/home/home.component';
-import { ProductsService } from '@pages/products/products.service';
+import { ProductsHttpService } from '@pages/products/products-http.service';
 import { ProductsComponent } from '@pages/products/products.component';
 import { SpinnerLoaderComponent } from './components/spinner-loader/spinner-loader.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SearchFilterComponent } from '../modules/admin/search-filter/search-filter.component';
 import { CountFilterComponent } from '../modules/admin/count-filter/count-filter.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FilterService } from '../modules/admin/services/filter.service';
 
 @NgModule({
   declarations: [
@@ -41,12 +43,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     SearchFilterComponent,
     CountFilterComponent,
   ],
-  providers: [ProductsService],
+  providers: [ProductsHttpService, FilterService],
   imports: [
     CommonModule,
     RouterLink,
     MatProgressSpinnerModule,
     ReactiveFormsModule,
+    MatDialogModule,
   ],
   exports: [
     UahCurrencyPipe,

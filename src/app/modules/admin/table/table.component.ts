@@ -93,10 +93,9 @@ export class TableComponent implements OnInit {
       height: '600px',
       width: '700px',
       data: {
-        title: 'Add product',
+        title: 'Add new product',
         name: '',
-        id: Math.trunc(Math.random() * 10 ** 9),
-        price: 0,
+        price: null,
         delete: false,
       },
     });

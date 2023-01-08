@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from '@pages/products/products.service';
+import { ProductsHttpService } from '@pages/products/products-http.service';
 import { IProduct } from '@interfaces/product.interface';
 import { TableOptions } from '@interfaces/table-options.interface';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-products',
@@ -15,13 +15,10 @@ export class ProductsComponent implements OnInit {
     filterBy: 'Price',
     itemsOnPage: 5,
   };
-  public loader$!: Subject<boolean>;
 
-  constructor(private productService: ProductsService) {}
+  constructor(private productsService: ProductsHttpService) {}
 
   ngOnInit() {
-    this.productService.getFromStorage();
-    this.allProducts$ = this.productService.products$;
-    this.loader$ = this.productService.loader;
+    this.allProducts$ = this.productsService.getAll<IProduct[]>();
   }
 }

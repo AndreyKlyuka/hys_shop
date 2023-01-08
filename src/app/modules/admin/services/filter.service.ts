@@ -1,18 +1,15 @@
 import { Injectable } from '@angular/core';
 import { IProduct } from '@interfaces/product.interface';
 import { BehaviorSubject } from 'rxjs';
-import { ProductsService } from '@pages/products/products.service';
+import { ProductsHttpService } from '@pages/products/products-http.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class FilterService {
   public idSortingDirection: boolean = true;
   public priceSortingDirection: boolean = true;
   public nameSortingDirection: boolean = true;
 
   private _searchText$ = new BehaviorSubject<string>('');
-
   private _priceInput$ = new BehaviorSubject<number>(0);
   private _priceSelectOption$ = new BehaviorSubject<string>('>');
   private _sortedProducts = new BehaviorSubject<IProduct[]>([]);
@@ -21,7 +18,7 @@ export class FilterService {
   public _pageCounter$ = new BehaviorSubject<number>(1);
   public pageCounter$ = this._pageCounter$.asObservable();
 
-  constructor(private productsService: ProductsService) {}
+  constructor(private productsService: ProductsHttpService) {}
 
   public getSortedBySearch() {
     let sortedProducts: IProduct[] = [];
@@ -29,24 +26,24 @@ export class FilterService {
     let price: number = 0;
     let option: string = '';
 
-    this.productsService.getFromStorage();
-    this.productsService.products$.subscribe((products) => {
+    this.productsService.getAll<IProduct[]>().subscribe((products) => {
       sortedProducts = products;
+
+      this._searchText$.subscribe((value) => (search = value));
+      this._priceInput$.subscribe((value) => (price = value));
+      this._priceSelectOption$.subscribe((value) => (option = value));
+
+      sortedProducts = sortedProducts.filter(
+        (product) =>
+          product.name.toLowerCase().search(search) != -1 ||
+          product.id === search ||
+          product.price.toString().search(search) != -1
+      );
+
+      this._sortedProducts.next(sortedProducts);
+
+      this.getSortedByOptions(this._sortedProducts, option, price);
     });
-    this._searchText$.subscribe((value) => (search = value));
-    this._priceInput$.subscribe((value) => (price = value));
-    this._priceSelectOption$.subscribe((value) => (option = value));
-
-    sortedProducts = sortedProducts.filter(
-      (product) =>
-        product.name.toLowerCase().search(search) != -1 ||
-        product.id === +search ||
-        product.price.toString().search(search) != -1
-    );
-
-    this._sortedProducts.next(sortedProducts);
-
-    this.getSortedByOptions(this._sortedProducts, option, price);
   }
 
   public getSortedByOptions(
@@ -73,8 +70,8 @@ export class FilterService {
 
     this.sortedProducts.subscribe((products) => (sorted = products));
     this.idSortingDirection
-      ? sorted.sort((a, b) => a.id - b.id)
-      : sorted.sort((a, b) => b.id - a.id);
+      ? sorted.sort((a, b) => a.name.localeCompare(b.name))
+      : sorted.sort((a, b) => a.name.localeCompare(b.name)).reverse();
     this._sortedProducts.next(sorted);
   }
 
