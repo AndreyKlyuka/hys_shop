@@ -1,5 +1,5 @@
 <div
-  *ngIf="cartTooltipService.isVisible$ | async"
+  *ngIf="visible$ | async"
   class="tooltip">
   <div class="tooltip__items">
     <div *ngFor="let product of cartProducts" class="tooltip__item">
