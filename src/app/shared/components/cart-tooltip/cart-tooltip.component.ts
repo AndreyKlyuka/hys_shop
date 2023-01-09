@@ -23,7 +23,7 @@ export class CartTooltipComponent implements OnInit {
   }
 
   public getCount(product: IProduct): number {
-    return this.cartService.getCount(product.id);
+    return this.cartService.getCount(product.id!);
   }
 
   ngOnInit() {

@@ -1,17 +1,19 @@
-<app-header></app-header>
-<main>
+<main *ngIf="(products$ | async)">
   <section class="products">
     <h1 class="products__title">Products</h1>
     <div class="products__cards">
       <app-product-card
-        *ngFor="let product of products | async"
+
+        *ngFor="let product of (products$ | async)?.slice(0, page * 8)"
+
         [productData]="product"
       ></app-product-card>
     </div>
     <div class="products__load">
-      <button class="btn btn__product">Load more</button>
+      <button class="btn btn__product" (click)="loadMore()">Load more</button>
     </div>
   </section>
 </main>
-<app-footer buttonText="Admin"></app-footer>
+<app-spinner-loader *ngIf="!(products$ | async)"></app-spinner-loader>
+
 

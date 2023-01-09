@@ -22,11 +22,11 @@ export class CartComponent implements OnInit, OnDestroy {
   constructor(private cartService: CartService) {}
 
   public changeCount(product: IProduct, value: number) {
-    this.cartService.setCount(product.id, value);
+    this.cartService.setCount(product.id!, value);
   }
 
   public getCount(product: IProduct): number {
-    return this.cartService.getCount(product.id);
+    return this.cartService.getCount(product.id!);
   }
 
   public getTotalPrice(cartProducts: IProduct[]) {

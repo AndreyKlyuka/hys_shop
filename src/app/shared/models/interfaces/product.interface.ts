@@ -1,6 +1,5 @@
-export interface IProduct {
-  id: number;
-  name: string;
-  price: number;
-  // inCart: number;
+import { ITableItem } from '@interfaces/table-item.interface';
+
+export interface IProduct extends ITableItem {
+  author: string;
 }

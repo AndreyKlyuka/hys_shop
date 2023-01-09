@@ -1,10 +1,13 @@
 <div class="wrapper">
-  <app-admin-sidebar page="users"></app-admin-sidebar>
+  <app-sidebar page="users"></app-sidebar>
 
   <main class="users-admin">
     <h2 class="users-admin__title"> Users </h2>
-    <app-admin-table
+    <app-table
       [options]="tableOptions"
-    ></app-admin-table>
+      [itemsService]="usersService"
+    >
+    </app-table>
+    <!--    <app-spinner-loader *ngIf="(loader$ | async)"></app-spinner-loader>-->
   </main>
 </div>

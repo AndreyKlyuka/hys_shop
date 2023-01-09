@@ -1,4 +1,3 @@
-<app-header></app-header>
 <main>
   <section class="cart">
     <h1 class="cart__title">Cart</h1>
@@ -13,7 +12,7 @@
                   class="btn btn__change-count">-
           </button>
           <div class="card__count-current">
-            <input type="number" min="1" [value]="getCount(product)">
+            <input type="number" min="1" [value]="getCount(product)" disabled>
           </div>
           <button (click)="changeCount(product,1)" class="btn btn__change-count">+</button>
         </div>
@@ -27,4 +26,3 @@
     </div>
   </section>
 </main>
-<app-footer buttonText="Admin"></app-footer>

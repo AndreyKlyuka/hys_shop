@@ -1,8 +1,10 @@
-<app-header></app-header>
-<main>
-  {{productData.id}}
-  {{productData.name}}
-  {{productData.price}}
+<main *ngIf="productData$ | async as product">
+  {{product.id}}
+  {{product.name}}
+  {{product.price}}
+  {{product.description}}
+  {{product.extraInfo}}
+  {{product.author}}
 </main>
-<app-footer buttonText="Admin"></app-footer>
+
 

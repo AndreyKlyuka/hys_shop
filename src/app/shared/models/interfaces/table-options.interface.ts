@@ -1,3 +1,8 @@
 export interface TableOptions {
-  filter: string;
+  filterBy: string;
+  itemsOnPage: number;
+  itemType: {
+    name: string;
+    oneItem: string;
+  };
 }
