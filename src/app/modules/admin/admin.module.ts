@@ -9,6 +9,7 @@ import { ProductsComponent } from './products/products.component';
 import { ModalComponent } from './modal/modal.component';
 import { FormsModule } from '@angular/forms';
 import { LoginGuard } from '../login/login.guard';
+import { UsersHttpService } from './services/users-http.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { LoginGuard } from '../login/login.guard';
     ModalComponent,
   ],
   imports: [CommonModule, AdminRoutingModule, SharedModule, FormsModule],
-  providers: [LoginGuard],
+  providers: [UsersHttpService, LoginGuard],
   exports: [],
 })
 export class AdminModule {}

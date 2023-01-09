@@ -43,10 +43,6 @@
     }
   }
 
-  &__container {
-    width: 100%;
-  }
-
   &__row {
     height: 90px;
     background-color: $secondary;
@@ -56,6 +52,10 @@
   &__data-btns {
     display: flex;
     justify-content: space-around;
+  }
+
+  &__data-container {
+    width: 100%;
   }
 
   td {

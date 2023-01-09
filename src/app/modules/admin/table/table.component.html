@@ -1,7 +1,7 @@
 <section class="table">
   <div class="table__inputs">
-    <app-search-filter></app-search-filter>
-    <app-count-filter></app-count-filter>
+    <app-search-filter [data]="(items$ | async)!"></app-search-filter>
+    <app-count-filter [data]="(items$ | async)!"></app-count-filter>
   </div>
   <table class="table__container">
     <tr class="table__header">
@@ -27,25 +27,68 @@
         <img *ngIf="priceSortingDirection" src="../../../../assets/images/arrow-sort.svg"
              class="table__arrow arrow-down" alt="arrow">
       </td>
-      <td class="table__header-item" (click)="addProduct()">Add</td>
+      <td class="table__header-item" (click)="addItem()">Add</td>
     </tr>
-    <tr *ngFor="let product of currentProducts" class="table__row">
-      <td class="table__data">{{product.id}}</td>
-      <td class="table__data">{{product.name}}</td>
-      <td class="table__data">{{product.price}}</td>
-      <td class="table__data">
-        <div class="table__data-btns">
-          <button class="table__btn-edit btn btn__admin-pagination" (click)="editProduct(product)">
-            <img src="../../../../assets/images/edit.svg"
-                 width="35px" height="35px" alt="edit">
-          </button>
-          <button class="table__btn-delete btn btn__admin-pagination" (click)="deleteProduct(product)">
-            <img src="../../../../assets/images/delete.svg"
-                 width="35px" height="35px" alt="delete">
-          </button>
-        </div>
-      </td>
-    </tr>
+    <ng-container *ngIf="options.itemType.name === 'Products'">
+      <tr *ngFor="let item of currentItems" class="table__row">
+        <td class="table__data">{{item.id}}</td>
+        <td class="table__data">{{item.name}}</td>
+        <td class="table__data">{{item.price}}</td>
+        <td class="table__data">
+          <div class="table__data-btns">
+            <button class="table__btn-edit btn btn__admin-pagination" (click)="editItem(item)">
+              <img src="../../../../assets/images/edit.svg"
+                   width="35px" height="35px" alt="edit">
+            </button>
+            <button class="table__btn-delete btn btn__admin-pagination" (click)="deleteItem(item)">
+              <img src="../../../../assets/images/delete.svg"
+                   width="35px" height="35px" alt="delete">
+            </button>
+          </div>
+        </td>
+      </tr>
+    </ng-container>
+    <ng-container *ngIf="options.itemType.name === 'Users'">
+      <tr *ngFor="let item of currentItems" class="table__row">
+        <td class="table__data">{{item.id}}</td>
+        <td class="table__data">{{item.username}}</td>
+        <td class="table__data">{{item.createdAt}}</td>
+        <td class="table__data">
+          <div class="table__data-btns">
+            <button class="table__btn-edit btn btn__admin-pagination" (click)="editItem(item)">
+              <img src="../../../../assets/images/edit.svg"
+                   width="35px" height="35px" alt="edit">
+            </button>
+            <button class="table__btn-delete btn btn__admin-pagination" (click)="deleteItem(item)">
+              <img src="../../../../assets/images/delete.svg"
+                   width="35px" height="35px" alt="delete">
+            </button>
+          </div>
+        </td>
+      </tr>
+    </ng-container>
+
+    <!--    <div *ngIf="options.itemType.name === 'Users'">-->
+    <!--      <tr *ngFor="let item of currentItems" class="table__row">-->
+    <!--        <td class="table__data">{{item.id}}</td>-->
+    <!--        <td class="table__data">{{item.username}}</td>-->
+    <!--        <td class="table__data">{{item.createdAt}}</td>-->
+    <!--        <td class="table__data">-->
+    <!--          <div class="table__data-btns">-->
+    <!--            <button class="table__btn-edit btn btn__admin-pagination" (click)="editItem(item)">-->
+    <!--              <img src="../../../../assets/images/edit.svg"-->
+    <!--                   width="35px" height="35px" alt="edit">-->
+    <!--            </button>-->
+    <!--            <button class="table__btn-delete btn btn__admin-pagination" (click)="deleteItem(item)">-->
+    <!--              <img src="../../../../assets/images/delete.svg"-->
+    <!--                   width="35px" height="35px" alt="delete">-->
+    <!--            </button>-->
+    <!--          </div>-->
+    <!--        </td>-->
+    <!--      </tr>-->
+    <!--    </div>-->
+
+
   </table>
   <div class="table__pagination">
     <div class="table__pagination-counter">{{currentPage}}/{{totalPages}}</div>

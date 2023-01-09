@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsHttpService } from '@pages/products/products-http.service';
-import { IProduct } from '@interfaces/product.interface';
 import { TableOptions } from '@interfaces/table-options.interface';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-products',
@@ -10,15 +8,19 @@ import { Observable } from 'rxjs';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
-  public allProducts$!: Observable<IProduct[]>;
+  // public allProducts$!: Observable<IProduct[]>;
   public tableOptions: TableOptions = {
     filterBy: 'Price',
     itemsOnPage: 5,
+    itemType: {
+      name: 'Products',
+      oneItem: 'product',
+    },
   };
 
-  constructor(private productsService: ProductsHttpService) {}
+  constructor(public productsService: ProductsHttpService) {}
 
   ngOnInit() {
-    this.allProducts$ = this.productsService.getAll<IProduct[]>();
+    // this.allProducts$ = this.productsService.getAll<IProduct[]>();
   }
 }

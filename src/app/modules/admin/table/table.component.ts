@@ -1,55 +1,74 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IProduct } from '@interfaces/product.interface';
-import { INewProduct } from '@interfaces/new-product.interface';
 import { TableOptions } from '@interfaces/table-options.interface';
 import { FilterService } from '../services/filter.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
+import { BaseHttpService } from '@shared/services/base-http.service';
+import { ITableItem } from '@interfaces/table-item.interface';
 import { ProductsHttpService } from '@pages/products/products-http.service';
+import { Observable } from 'rxjs';
+import { UsersHttpService } from '../services/users-http.service';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
-export class TableComponent implements OnInit {
+export class TableComponent<T extends ITableItem> implements OnInit {
   @Input()
   public options!: TableOptions;
-  public allProducts: IProduct[] = [];
-  public currentProducts: IProduct[] = [];
+  @Input()
+  public itemsService!: BaseHttpService;
+  public allItems: T[] = [];
+  public currentItems: T[] = [];
+  public items$!: Observable<T[]>;
 
   public idSortingDirection: boolean = false;
   public nameSortingDirection: boolean = false;
   public priceSortingDirection: boolean = false;
 
+  public pageHTTP!: string;
+
   public currentPage: number = 1;
   public totalPages: number = 0;
 
   constructor(
-    private filterService: FilterService,
-    private productsHTTPService: ProductsHttpService,
+    private filterService: FilterService<T>,
+    private productsService: ProductsHttpService,
+    private usersService: UsersHttpService,
     private modal: MatDialog
   ) {}
 
   ngOnInit() {
-    this.filterService.getSortedBySearch();
-    this.filterService.sortedProducts.subscribe((products) => {
-      this.allProducts = products;
+    this.pageHTTP = this.options.itemType.name;
 
-      this.currentProducts = this.allProducts.slice(
-        this.currentPage * this.options.itemsOnPage - this.options.itemsOnPage,
-        this.options.itemsOnPage * this.currentPage
+    if (this.options.itemType.name === 'Products')
+      this.items$ = this.productsService.getAll<T[]>();
+    if (this.options.itemType.name === 'Users')
+      this.items$ = this.usersService.getAll<T[]>();
+
+    this.itemsService.getAll<T[]>().subscribe((items) => {
+      this.filterService.getSortedBySearch(items);
+
+      this.filterService.sortedItems.subscribe((items) => {
+        this.allItems = items;
+        this.currentItems = this.allItems.slice(
+          this.currentPage * this.options.itemsOnPage -
+            this.options.itemsOnPage,
+          this.options.itemsOnPage * this.currentPage
+        );
+
+        this.totalPages = Math.ceil(
+          this.allItems.length / this.options.itemsOnPage
+        );
+
+        this.arrowHandler();
+      });
+
+      this.filterService.pageCounter$.subscribe(
+        (page) => (this.currentPage = page)
       );
-
-      this.totalPages = Math.ceil(
-        this.allProducts.length / this.options.itemsOnPage
-      );
-
-      this.arrowHandler();
     });
-    this.filterService.pageCounter$.subscribe(
-      (page) => (this.currentPage = page)
-    );
   }
 
   public sortById() {
@@ -74,7 +93,7 @@ export class TableComponent implements OnInit {
     if (this.currentPage >= this.totalPages) return;
     this.currentPage++;
     this.filterService._pageCounter$.next(this.currentPage);
-    this.currentProducts = this.allProducts.slice(
+    this.currentItems = this.allItems.slice(
       this.currentPage * this.options.itemsOnPage - this.options.itemsOnPage,
       this.options.itemsOnPage * this.currentPage
     );
@@ -84,76 +103,121 @@ export class TableComponent implements OnInit {
     if (this.currentPage === 1) return;
     this.currentPage--;
     this.filterService._pageCounter$.next(this.currentPage);
-    this.currentProducts = this.allProducts.slice(
+    this.currentItems = this.allItems.slice(
       this.currentPage * this.options.itemsOnPage - this.options.itemsOnPage,
       this.options.itemsOnPage * this.currentPage
     );
   }
 
-  public addProduct() {
-    const dialog = this.modal.open(ModalComponent, {
-      height: '600px',
-      width: '700px',
-      data: {
-        title: 'Add new product',
-        name: '',
-        price: null,
-        delete: false,
-      },
-    });
-    dialog.afterClosed().subscribe((value) => {
-      if (!value) return;
-      const newProduct: INewProduct = {
-        name: value.name,
-        price: value.price,
-        description: value.description,
-      };
-      this.productsHTTPService
-        .create<INewProduct>(newProduct)
-        .subscribe((data) => {
+  public addItem() {
+    if (this.pageHTTP === 'Users') {
+      const dialog = this.modal.open(ModalComponent, {
+        height: '500px',
+        width: '700px',
+        data: {
+          page: this.pageHTTP,
+          delete: false,
+          title: `Add new ${this.options.itemType.oneItem}`,
+          name: '',
+          password: null,
+        },
+      });
+      dialog.afterClosed().subscribe((value) => {
+        if (!value) return;
+        const newItem: any = {
+          username: value.name,
+          password: value.password,
+        };
+        console.log(value);
+        this.itemsService.create<T>(newItem).subscribe((data) => {
           this.ngOnInit();
         });
-    });
-  }
-
-  public editProduct(product: IProduct) {
-    const editDialog = this.modal.open(ModalComponent, {
-      height: '600px',
-      width: '700px',
-      data: {
-        title: ' Edit Product',
-        name: product.name,
-        id: product.id,
-        price: product.price,
-        // description:
-        delete: false,
-      },
-    });
-    editDialog.afterClosed().subscribe((value) => {
-      if (!value) return;
-      const edited = (({ id, ...object }) => object)(value);
-
-      this.productsHTTPService
-        .update<INewProduct>(product.id, edited)
-        .subscribe((data) => {
+      });
+    }
+    if (this.pageHTTP === 'Products') {
+      const dialog = this.modal.open(ModalComponent, {
+        height: '700px',
+        width: '700px',
+        data: {
+          page: this.pageHTTP,
+          delete: false,
+          title: `Add new ${this.options.itemType.oneItem}`,
+          name: '',
+          description: '',
+        },
+      });
+      dialog.afterClosed().subscribe((value) => {
+        if (!value) return;
+        const newItem: any = {
+          name: value.name,
+          price: value.price,
+          description: value.description,
+        };
+        this.itemsService.create<T>(newItem).subscribe((data) => {
           this.ngOnInit();
         });
-    });
+      });
+    }
   }
 
-  public deleteProduct(product: IProduct) {
+  public editItem(item: T) {
+    if (this.pageHTTP === 'Users') {
+      const dialog = this.modal.open(ModalComponent, {
+        height: '500px',
+        width: '700px',
+        data: {
+          page: this.pageHTTP,
+          delete: false,
+          title: `Add new ${this.options.itemType.oneItem}`,
+          password: null,
+        },
+      });
+      dialog.afterClosed().subscribe((value) => {
+        if (!value) return;
+        const edited = (({ id, ...object }) => object)(value);
+
+        this.itemsService.update<T>(item.id!, edited).subscribe((data) => {
+          this.ngOnInit();
+        });
+      });
+    }
+    if (this.pageHTTP === 'Products') {
+      const dialog = this.modal.open(ModalComponent, {
+        height: '700px',
+        width: '700px',
+        data: {
+          page: this.pageHTTP,
+          delete: false,
+          title: `Edit ${this.options.itemType.oneItem}`,
+          name: item.name,
+          id: item.id,
+          price: item.price,
+          description: item.description,
+        },
+      });
+      dialog.afterClosed().subscribe((value) => {
+        if (!value) return;
+        const edited = (({ id, ...object }) => object)(value);
+        this.itemsService.update<T>(item.id!, edited).subscribe((data) => {
+          this.ngOnInit();
+        });
+      });
+    }
+  }
+
+  public deleteItem(item: T) {
     let deleteDialog = this.modal.open(ModalComponent, {
-      height: '230px',
+      height: '300px',
       width: '700px',
       data: {
-        title: 'Delete product',
-        id: product.id,
-        // de
+        title: `Delete ${this.options.itemType.oneItem}`,
+        id: item.id,
         delete: true,
       },
     });
     deleteDialog.afterClosed().subscribe((value) => {
-      this.productsHTTPService.delete(product.id).subscribe((data) => {
+      if (!value) return;
+      this.itemsService.delete(item.id!).subscribe((data) => {
         this.ngOnInit();
       });
     });

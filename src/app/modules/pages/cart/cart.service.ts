@@ -32,7 +32,7 @@ export class CartService {
     );
     this.cartSubject$.next(this.latestCarts);
     this.setToStorage(this.latestCarts);
-    this.setCount(product.id, 0);
+    this.setCount(product.id!, 0);
   }
 
   public toggle(product: IProduct) {
@@ -43,7 +43,7 @@ export class CartService {
 
   public getTotalPrice(arr: IProduct[]) {
     return arr.reduce(
-      (acc, { price, id }) => acc + price * this.getCount(id),
+      (acc, { price, id }) => acc + price! * this.getCount(id!),
       0
     );
   }

@@ -4,8 +4,8 @@
       <div class="card__product-name">
         <a [routerLink]="['/products/', productData.id]">{{ productData.name }}</a>
       </div>
-      <div [productPriceColor]="productData.price"
-           class="card__product-price">{{ productData.price | uahCurrency}}</div>
+      <div [productPriceColor]="productData.price!"
+           class="card__product-price">{{ productData.price! | uahCurrency}}</div>
     </div>
     <ng-content></ng-content>
   </div>

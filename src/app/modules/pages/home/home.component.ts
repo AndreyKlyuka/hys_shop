@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
     this.productsService.getAll<IProduct[]>().subscribe(
       (products) =>
         (this.topProducts = products
-          .filter((product) => product.price > 1000)
+          .filter((product) => product.price! > 1000)
           .slice(0, 3))
       // );
     );

@@ -4,7 +4,9 @@
   <main class="products-admin">
     <h2 class="products-admin__title"> Products </h2>
     <app-table
-      [options]="tableOptions">
+      [options]="tableOptions"
+      [itemsService]="productsService"
+    >
     </app-table>
     <!--    <app-spinner-loader *ngIf="(loader$ | async)"></app-spinner-loader>-->
   </main>
