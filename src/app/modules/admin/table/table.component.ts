@@ -41,6 +41,8 @@ export class TableComponent<T extends ITableItem> implements OnInit {
 
   ngOnInit() {
     this.pageHTTP = this.options.itemType.name;
+    this.filterService._pageCounter$.next(this.currentPage);
+    this.totalPages = 0;
 
     if (this.options.itemType.name === 'Products')
       this.items$ = this.productsService.getAll<T[]>();
@@ -168,7 +170,8 @@ export class TableComponent<T extends ITableItem> implements OnInit {
         data: {
           page: this.pageHTTP,
           delete: false,
-          title: `Add new ${this.options.itemType.oneItem}`,
+          update: true,
+          title: `Edit ${this.options.itemType.oneItem} ${item.id}`,
           password: null,
         },
       });

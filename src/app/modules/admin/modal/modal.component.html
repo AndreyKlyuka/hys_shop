@@ -3,7 +3,7 @@
 
   <form *ngIf="!data.delete" class="modal__form form">
 
-    <div *ngIf="data.page === 'Users' && data.name" class="form__item">
+    <div *ngIf="!(data.update && data.page === 'Users')" class="form__item">
       <label>Name</label>
       <input [(ngModel)]="name" class="form__input" type="text" name="name" placeholder="Name"/>
     </div>

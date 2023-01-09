@@ -17,6 +17,7 @@ export class ModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA)
     public data: {
       delete: boolean;
+      update: boolean;
       page: 'Users' | 'Products';
       title: string;
       name?: string;
