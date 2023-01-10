@@ -11,8 +11,15 @@
   }
 
   &__cards {
+    height: 100%;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
+    flex: 1 1 auto;
     gap: 39px;
   }
+}
+
+.tooltip__total-price {
+  margin-top: 28px;
 }

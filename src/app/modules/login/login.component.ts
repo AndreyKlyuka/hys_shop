@@ -27,7 +27,7 @@ export class LoginComponent {
       .subscribe({
         next: (response) => {
           this.authService.setToken(response.access_token);
-          this.router.navigateByUrl('admin/products');
+          this.router.navigateByUrl('admin/users');
         },
         error: (error) => {
           if (error.error.statusCode === 401) {

@@ -4,6 +4,8 @@ export interface ITableItem {
   name: string;
   price?: number;
   createdAt?: string;
-  extraInfo?: object;
+  extraInfo?: {
+    image: string;
+  };
   description?: string;
 }

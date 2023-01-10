@@ -1,10 +1,42 @@
 <main *ngIf="productData$ | async as product">
-  {{product.id}}
-  {{product.name}}
-  {{product.price}}
-  {{product.description}}
-  {{product.extraInfo}}
-  {{product.author}}
+  <section class="product container">
+    <h2 class="product__title">{{product.name}}</h2>
+    <h3 class="product__subtitle">Product id: {{product.id}}</h3>
+    <div class="product__info">
+
+      <div class="product__info-main">
+        <div class="product__info-price">Price: {{product.price! | uahCurrency}}</div>
+
+        <div class="product__info-author">
+          Seller: {{product.author}}
+        </div>
+        <div class="product__info-description">
+          <button class="product__info-description-title btn btn__product" (click)="toggleDescription()">
+            {{description ? 'Hide' : 'Show'}} description
+          </button>
+          <p *ngIf="description"
+             class="product__info-description-text ">{{product.description}}</p>
+        </div>
+      </div>
+
+      <div *ngIf="product.extraInfo" class="product__info-extra">
+        <div class="product__info-img">
+          <img src="{{product.extraInfo!.image}}" alt="cant find image">
+        </div>
+      </div>
+
+    </div>
+    <div class="product__order">
+      <button (click)="toggleProduct(product)" [ngClass]="{
+                      'btn__in-cart': inCart,
+                      '':!inCart
+                     }"
+              class="btn btn__product">{{ inCart ? 'Remove from cart' : 'Add to cart'}}</button>
+    </div>
+
+  </section>
+
+
 </main>
 
 

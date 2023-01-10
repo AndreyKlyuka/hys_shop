@@ -1,12 +1,7 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { IProduct } from '@interfaces/product.interface';
 import { CartService } from '@pages/cart/cart.service';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -14,10 +9,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./cart.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CartComponent implements OnInit, OnDestroy {
-  public cartProducts: IProduct[] = [];
-
-  private subscription!: Subscription;
+export class CartComponent implements OnInit {
+  public cartProducts$!: Observable<IProduct[]>;
 
   constructor(private cartService: CartService) {}
 
@@ -35,14 +28,6 @@ export class CartComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.cartService.getFromStorage();
-    this.subscription = this.cartService.cartChanged$.subscribe(
-      (cartProducts) => {
-        this.cartProducts = cartProducts;
-      }
-    );
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.cartProducts$ = this.cartService.cartChanged$;
   }
 }

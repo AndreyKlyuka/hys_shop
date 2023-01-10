@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IProduct } from '@interfaces/product.interface';
 import { CartService } from '@pages/cart/cart.service';
 import { CartTooltipService } from '@shared/components/cart-tooltip/cart-tooltip.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-cart-tooltip',
@@ -9,7 +10,8 @@ import { CartTooltipService } from '@shared/components/cart-tooltip/cart-tooltip
   styleUrls: ['./cart-tooltip.component.scss'],
 })
 export class CartTooltipComponent implements OnInit {
-  cartProducts: IProduct[] = [];
+  // cartProducts: IProduct[] = [];
+  cartProducts$!: Observable<IProduct[]>;
 
   constructor(
     public cartService: CartService,
@@ -20,14 +22,8 @@ export class CartTooltipComponent implements OnInit {
     return this.cartService.getTotalPrice(cartProducts);
   }
 
-  public getCount(product: IProduct): number {
-    return this.cartService.getCount(product.id!);
-  }
-
   ngOnInit() {
     this.cartService.getFromStorage();
-    this.cartService.cartChanged$.subscribe((cartProducts) => {
-      this.cartProducts = cartProducts;
-    });
+    this.cartProducts$ = this.cartService.cartChanged$;
   }
 }
