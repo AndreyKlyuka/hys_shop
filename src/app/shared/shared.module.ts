@@ -9,7 +9,6 @@ import { CartTooltipComponent } from '@shared/components/cart-tooltip/cart-toolt
 import { RouterLink } from '@angular/router';
 import { SidebarComponent } from '../modules/admin/sidebar/sidebar.component';
 import { TableComponent } from '../modules/admin/table/table.component';
-import { NotFoundComponent } from '@pages/not-found/not-found.component';
 import { CartComponent } from '@pages/cart/cart.component';
 import { ProductCardComponent } from '@shared/components/product-card/product-card.component';
 import { ProductComponent } from '@pages/product/product.component';
@@ -33,7 +32,6 @@ import { FilterService } from '../modules/admin/services/filter.service';
     CartTooltipComponent,
     SidebarComponent,
     TableComponent,
-    NotFoundComponent,
     CartComponent,
     ProductCardComponent,
     ProductComponent,
@@ -59,7 +57,6 @@ import { FilterService } from '../modules/admin/services/filter.service';
     CartTooltipComponent,
     SidebarComponent,
     TableComponent,
-    NotFoundComponent,
     CartComponent,
     ProductCardComponent,
     ProductComponent,

@@ -1,7 +1,7 @@
 @import "utils/variables";
 @import "components/btn";
 
-.not-found {
+.forbidden {
   max-width: $container;
   margin: 100px auto 0;
 
@@ -17,4 +17,9 @@
   &__btn {
     margin-top: 70px;
   }
+}
+
+img {
+  width: 500px;
+  height: 500px;
 }

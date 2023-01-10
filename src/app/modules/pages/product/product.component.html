@@ -33,10 +33,13 @@
                      }"
               class="btn btn__product">{{ inCart ? 'Remove from cart' : 'Add to cart'}}</button>
     </div>
-
   </section>
-
-
+</main>
+<main *ngIf="!(productData$ | async)">
+  <section class="product container">
+    <h2 class="product__title">There is no product like this :(</h2>
+    <h3 class="product__subtitle">But you can login and create your own!</h3>
+  </section>
 </main>
 
 

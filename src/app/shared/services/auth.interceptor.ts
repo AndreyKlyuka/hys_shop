@@ -14,34 +14,63 @@ import { Router } from '@angular/router';
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService, private router: Router) {}
 
-  // intercept(
-  //   req: HttpRequest<any>,
-  //   next: HttpHandler
-  // ): Observable<HttpEvent<any>> {
-  //   return next.handle(req);
-  // }
-
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     const token = this.authService.getToken();
 
-    if (token) {
-      const authRequest = request.clone({
-        headers: request.headers.set('Authorization', `Bearer ${token}`),
-      });
-      return next.handle(authRequest);
-    }
-    return next.handle(request).pipe(
+    const authRequest = request.clone({
+      headers: request.headers.set('Authorization', `Bearer ${token}` || ''),
+    });
+    return next.handle(authRequest).pipe(
       tap({
-        // next: (next) => {},
+        next: (next) => {},
         error: (error) => {
           if (error instanceof HttpErrorResponse) {
-            console.log('error');
+            console.log(error);
+            if (error.status === 401) {
+              console.log(error.message);
+
+              this.router.navigateByUrl('/401');
+            }
+            if (error.status === 404) {
+              console.log(error.message);
+
+              this.router.navigateByUrl('/404');
+            }
+            if (error.status === 403) {
+              console.log(error.message);
+              this.router.navigateByUrl('/403');
+            }
           }
         },
       })
     );
+
+    // return next.handle(request).pipe(
+    //   tap({
+    //     next: (next) => {},
+    //     error: (error) => {
+    //       if (error instanceof HttpErrorResponse) {
+    //         console.log(error);
+    //         if (error.status === 401) {
+    //           console.log(error.message);
+    //
+    //           this.router.navigateByUrl('/401');
+    //         }
+    //         if (error.status === 404) {
+    //           console.log(error.message);
+    //
+    //           this.router.navigateByUrl('/404');
+    //         }
+    //         if (error.status === 403) {
+    //           console.log(error.message);
+    //           this.router.navigateByUrl('/403');
+    //         }
+    //       }
+    //     },
+    //   })
+    // );
   }
 }

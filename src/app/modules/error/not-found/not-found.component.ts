@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./not-found.component.scss'],
 })
 export class NotFoundComponent {
-  public notFoundImage = 'assets/images/5203299-removebg-preview.png';
+  public notFoundImage = 'assets/images/not-found.png';
 }

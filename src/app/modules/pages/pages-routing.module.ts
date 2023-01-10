@@ -5,7 +5,6 @@ import { HomeComponent } from '@pages/home/home.component';
 import { ProductsComponent } from '@pages/products/products.component';
 import { CartComponent } from '@pages/cart/cart.component';
 import { ProductComponent } from '@pages/product/product.component';
-import { NotFoundComponent } from '@pages/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -37,10 +36,9 @@ const routes: Routes = [
         pathMatch: 'full',
         redirectTo: '',
       },
-
       {
         path: '**',
-        component: NotFoundComponent,
+        redirectTo: '/404',
       },
     ],
   },
@@ -50,5 +48,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class PagesRoutingModule {
-}
+export class PagesRoutingModule {}
