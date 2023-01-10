@@ -21,10 +21,11 @@
   &__buttons {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 8%;
 
     button {
-      width: 45%;
+      width: 46%;
     }
   }
 }

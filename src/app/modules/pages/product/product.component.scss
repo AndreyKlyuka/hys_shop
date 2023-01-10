@@ -37,8 +37,12 @@ main {
       gap: 15px;
     }
 
-    &extra {
+    &-extra {
       width: 30%;
+    }
+
+    &-description-text {
+      margin-top: 20px;
     }
   }
 

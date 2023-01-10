@@ -35,10 +35,10 @@
     </div>
   </section>
 </main>
-<main *ngIf="!(productData$ | async)">
+<main *ngIf="!(productData$ | async) && inCart">
   <section class="product container">
-    <h2 class="product__title">There is no product like this :(</h2>
-    <h3 class="product__subtitle">But you can login and create your own!</h3>
+    <h2 class="product__title">There is no page at this url :(</h2>
+    <h3 class="product__subtitle">But you can login and create your own product!</h3>
   </section>
 </main>
 

@@ -5,6 +5,7 @@ import { HomeComponent } from '@pages/home/home.component';
 import { ProductsComponent } from '@pages/products/products.component';
 import { CartComponent } from '@pages/cart/cart.component';
 import { ProductComponent } from '@pages/product/product.component';
+import { NotFoundComponent } from '../error/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -38,7 +39,8 @@ const routes: Routes = [
       },
       {
         path: '**',
-        redirectTo: '/404',
+        pathMatch: 'full',
+        component: NotFoundComponent,
       },
     ],
   },

@@ -8,14 +8,14 @@ const routes: Routes = [
       import('./modules/admin/admin.module').then((m) => m.AdminModule),
   },
   {
-    path: '',
+    path: 'error',
     loadChildren: () =>
-      import('./modules/pages/pages.module').then((m) => m.PagesModule),
+      import('./modules/error/error.module').then((m) => m.ErrorModule),
   },
   {
     path: '',
     loadChildren: () =>
-      import('./modules/error/error.module').then((m) => m.ErrorModule),
+      import('./modules/pages/pages.module').then((m) => m.PagesModule),
   },
 ];
 
@@ -23,4 +23,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

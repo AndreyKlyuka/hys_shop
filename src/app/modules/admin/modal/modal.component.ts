@@ -18,6 +18,7 @@ export class ModalComponent implements OnInit {
     public data: {
       delete: boolean;
       update: boolean;
+      login: boolean;
       page: 'Users' | 'Products';
       title: string;
       name?: string;
@@ -30,6 +31,10 @@ export class ModalComponent implements OnInit {
 
   public submit() {
     if (this.data.delete) {
+      this.dialogRef.close(true);
+      return;
+    }
+    if (this.data.login) {
       this.dialogRef.close(true);
       return;
     }
