@@ -10,8 +10,10 @@ import { Observable } from 'rxjs';
   styleUrls: ['./cart-tooltip.component.scss'],
 })
 export class CartTooltipComponent implements OnInit {
+
   // cartProducts: IProduct[] = [];
   cartProducts$!: Observable<IProduct[]>;
+
 
   constructor(
     public cartService: CartService,
@@ -24,6 +26,8 @@ export class CartTooltipComponent implements OnInit {
 
   ngOnInit() {
     this.cartService.getFromStorage();
+
     this.cartProducts$ = this.cartService.cartChanged$;
+
   }
 }

@@ -3,7 +3,9 @@
     <h1 class="products__title">Products</h1>
     <div class="products__cards">
       <app-product-card
+
         *ngFor="let product of (products$ | async)?.slice(0, page * 8)"
+
         [productData]="product"
       ></app-product-card>
     </div>

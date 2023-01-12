@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from '@interfaces/product.interface';
+
 import { ProductsHttpService } from './products-http.service';
+
 import { Observable } from 'rxjs';
 
 @Component({
@@ -9,6 +11,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
+
   public products$!: Observable<IProduct[]>;
   public page: number = 1;
 
@@ -20,5 +23,6 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.products$ = this.productsService.getAll<IProduct[]>();
+
   }
 }
