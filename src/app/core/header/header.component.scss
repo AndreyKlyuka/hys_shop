@@ -45,3 +45,21 @@ a {
 .cart-item {
   position: relative;
 }
+
+@media screen and (max-width: $container) {
+  .header {
+    width: $container_middle;
+  }
+}
+
+@media screen and (max-width: $container_middle) {
+  .header {
+    width: $container_taplet;
+  }
+}
+
+@media screen and (max-width: $container_taplet) {
+  .header {
+    width: $container_mobile;
+  }
+}

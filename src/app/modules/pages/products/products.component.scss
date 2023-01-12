@@ -23,3 +23,33 @@
     margin-bottom: 30px;
   }
 }
+
+@media screen and (max-width: $container) {
+  .products {
+    width: $container_middle;
+
+    &__title {
+      width: $container_middle;
+    }
+  }
+}
+
+@media screen and (max-width: $container_middle) {
+  .products {
+    width: $container_taplet;
+
+    &__title {
+      width: $container_taplet;
+    }
+  }
+}
+
+//@media screen and (max-width: $container_taplet) {
+//  .header {
+//    width: $container_mobile;
+//
+//    &__title {
+//      width: $container_mobile;
+//    }
+//  }
+//}

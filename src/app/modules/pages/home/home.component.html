@@ -1,13 +1,12 @@
-<main class="home container">
+<main class="home">
   <h1 class="home__title">Welcome to the shop!</h1>
   <h2 class="home__sub-title">Top our products:</h2>
-
   <section class="home__cards">
+
     <app-product-card *ngFor="let product of topProducts"
                       [productData]="product"
     ></app-product-card>
   </section>
-
 
   <button class="home__btn btn btn__product" routerLink="products">See all list</button>
 </main>

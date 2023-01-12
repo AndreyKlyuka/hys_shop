@@ -10,7 +10,7 @@ main {
 }
 
 .product {
-  margin: 0 auto;
+  margin: 50px auto;
   padding: 25px;
   background-color: $primary;
 
@@ -53,4 +53,16 @@ main {
 
 .product__info-description-title {
   margin-top: 10px;
+}
+
+@media screen and (max-width: $container) {
+  .product {
+    width: $container_middle;
+  }
+}
+
+@media screen and (max-width: $container_middle) {
+  .product {
+    width: $container_taplet;
+  }
 }

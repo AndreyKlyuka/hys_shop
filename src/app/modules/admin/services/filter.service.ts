@@ -107,10 +107,20 @@ export class FilterService<T extends ITableItem> {
     this.nameSortingDirection = !this.nameSortingDirection;
 
     this.sortedItems.subscribe((items) => (sorted = items));
-    this.nameSortingDirection
-      ? sorted.sort((a, b) => a.name.localeCompare(b.name))
-      : sorted.sort((a, b) => a.name.localeCompare(b.name)).reverse();
-    this._sortedItems.next(sorted);
+    if (sorted[0].name) {
+      this.nameSortingDirection
+        ? sorted.sort((a, b) => a.name.localeCompare(b.name))
+        : sorted.sort((a, b) => a.name.localeCompare(b.name)).reverse();
+      this._sortedItems.next(sorted);
+    }
+    if (sorted[0].username) {
+      this.nameSortingDirection
+        ? sorted.sort((a, b) => a.username!.localeCompare(b.username!))
+        : sorted
+            .sort((a, b) => a.username!.localeCompare(b.username!))
+            .reverse();
+      this._sortedItems.next(sorted);
+    }
   }
 
   public sortByPrice() {
@@ -119,11 +129,22 @@ export class FilterService<T extends ITableItem> {
 
     this.sortedItems.subscribe((items) => (sorted = items));
 
-    this.priceSortingDirection
-      ? sorted.sort((a, b) => <number>a.price - <number>b.price)
-      : sorted.sort((a, b) => <number>b.price - <number>a.price);
+    if (sorted[0].price) {
+      this.priceSortingDirection
+        ? sorted.sort((a, b) => <number>a.price - <number>b.price)
+        : sorted.sort((a, b) => <number>b.price - <number>a.price);
+      this._sortedItems.next(sorted);
+      return;
+    }
+    if (sorted[0].createdAt) {
+      this.priceSortingDirection
+        ? sorted.sort((a, b) => a.createdAt!.localeCompare(b.createdAt!))
+        : sorted
+            .sort((a, b) => a.createdAt!.localeCompare(b.createdAt!))
+            .reverse();
 
-    this._sortedItems.next(sorted);
+      this._sortedItems.next(sorted);
+    }
   }
 
   filterByText(text: string, data: T[]) {
