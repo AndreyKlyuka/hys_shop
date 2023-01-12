@@ -22,6 +22,7 @@ import { ErrorComponent } from './modules/error/error.component';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
+
   bootstrap: [AppComponent],
   exports: [],
 })
