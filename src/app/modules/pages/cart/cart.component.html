@@ -1,10 +1,9 @@
-<app-header></app-header>
 <main>
   <section class="cart">
     <h1 class="cart__title">Cart</h1>
     <div class="cart__cards">
       <app-product-card
-        *ngFor="let product of cartProducts"
+        *ngFor="let product of cartProducts$ | async"
         [productData]="product"
       >
 
@@ -13,7 +12,7 @@
                   class="btn btn__change-count">-
           </button>
           <div class="card__count-current">
-            <input type="number" min="1" [value]="getCount(product)">
+            <input type="number" min="1" [value]="getCount(product)" disabled>
           </div>
           <button (click)="changeCount(product,1)" class="btn btn__change-count">+</button>
         </div>
@@ -21,10 +20,9 @@
       </app-product-card>
 
     </div>
-    <div class="tooltip__total-price">{{cartProducts.length !== 0 ?
-      'Total price: ' + (getTotalPrice(cartProducts) | uahCurrency) :
-      'Cart is empty'}}
+    <div class="tooltip__total-price">{{(cartProducts$ | async)!.length !== 0 ?
+      'Total price: ' + (getTotalPrice((cartProducts$ | async)!) | uahCurrency) :
+      'Cart is empty, this is sad'}}
     </div>
   </section>
 </main>
-<app-footer buttonText="Admin"></app-footer>

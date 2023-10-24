@@ -3,13 +3,14 @@
 
 .card {
   width: 402px;
-  height: 271px;
+  height: 291px;
   padding: 30px;
-  background-color: rgb($primary, 0.5);
+  background-color: rgb($primary, 0.95);
   display: flex;
   flex-direction: column;
   gap: 25px;
   line-height: 44px;
+  border-radius: 7px;
 
   &__info {
     display: flex;
@@ -20,6 +21,20 @@
   &__description {
     display: flex;
     flex-direction: column;
+    gap: 25px;
+    overflow: hidden;
+  }
+
+  &__product-name {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 90%;
+    height: 1.2em;
+    white-space: nowrap;
+  }
+
+  &__product-price {
+    color: lightsalmon;
   }
 
   button {
@@ -37,5 +52,22 @@ a {
 
   &:hover {
     cursor: pointer;
+  }
+}
+
+@media screen and (max-width: $container_middle) {
+  .card {
+    width: $container_taplet;
+    height: 350px;
+    padding: 50px;
+
+    &__product-name {
+      text-overflow: initial;
+      overflow: initial;
+    }
+
+    &__description {
+      gap: 45px;
+    }
   }
 }

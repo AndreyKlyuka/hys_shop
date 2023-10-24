@@ -1,0 +1,87 @@
+<section class="table">
+  <div class="table__inputs">
+    <app-search-filter [data]="(items$ | async)!"></app-search-filter>
+    <app-count-filter [data]="(items$ | async)!"></app-count-filter>
+  </div>
+  <table class="table__container">
+    <tr class="table__header">
+      <td class="table__header-item" (click)="sortById()">
+        ID
+        <img *ngIf="!idSortingDirection" src="../../../../assets/images/arrow-sort.svg"
+             class="table__arrow arrow-up" alt="arrow">
+        <img *ngIf="idSortingDirection" src="../../../../assets/images/arrow-sort.svg"
+             class="table__arrow arrow-down" alt="arrow">
+
+      </td>
+      <td class="table__header-item" (click)="sortByName()">
+        Name
+        <img *ngIf="!nameSortingDirection" src="../../../../assets/images/arrow-sort.svg"
+             class="table__arrow arrow-up" alt="arrow">
+        <img *ngIf="nameSortingDirection" src="../../../../assets/images/arrow-sort.svg"
+             class="table__arrow arrow-down" alt="arrow">
+      </td>
+      <td class="table__header-item" (click)="sortByPrice()">
+        {{options.filterBy}}
+        <img *ngIf="!priceSortingDirection" src="../../../../assets/images/arrow-sort.svg"
+             class="table__arrow arrow-up" alt="arrow">
+        <img *ngIf="priceSortingDirection" src="../../../../assets/images/arrow-sort.svg"
+             class="table__arrow arrow-down" alt="arrow">
+      </td>
+      <td class="table__header-item" (click)="addItem()">Add</td>
+    </tr>
+    <ng-container *ngIf="options.itemType.name === 'Products'">
+      <tr *ngFor="let item of currentItems" class="table__row">
+        <td class="table__data">{{item.id}}</td>
+        <td class="table__data">{{item.name}}</td>
+        <td class="table__data">{{item.price! | uahCurrency}}</td>
+        <td class="table__data">
+          <div class="table__data-btns">
+            <button class="table__btn-edit btn btn__admin-pagination" (click)="editItem(item)">
+              <img src="../../../../assets/images/edit.svg"
+                   width="35px" height="35px" alt="edit">
+            </button>
+            <button class="table__btn-delete btn btn__admin-pagination" (click)="deleteItem(item)">
+              <img src="../../../../assets/images/delete.svg"
+                   width="35px" height="35px" alt="delete">
+            </button>
+          </div>
+        </td>
+      </tr>
+    </ng-container>
+    <ng-container *ngIf="options.itemType.name === 'Users'">
+      <tr *ngFor="let item of currentItems" class="table__row">
+        <td class="table__data">{{item.id}}</td>
+        <td class="table__data">{{item.username}}</td>
+        <td class="table__data">{{item.createdAt!.slice(0, 10)}}</td>
+        <td class="table__data">
+          <div class="table__data-btns">
+            <button class="table__btn-edit btn btn__admin-pagination" (click)="editItem(item)">
+              <img src="../../../../assets/images/edit.svg"
+                   width="35px" height="35px" alt="edit">
+            </button>
+            <button class="table__btn-delete btn btn__admin-pagination" (click)="deleteItem(item)">
+              <img src="../../../../assets/images/delete.svg"
+                   width="35px" height="35px" alt="delete">
+            </button>
+          </div>
+        </td>
+      </tr>
+    </ng-container>
+
+
+  </table>
+  <div class="table__pagination">
+    <div class="table__pagination-counter">{{currentPage}}/{{totalPages}}</div>
+    <div class="table__pagination-btns">
+      <button class="table__pagination-btn btn btn__admin-pagination" (click)="prevPage()">
+        <img src="../../../../assets/images/arrow-left.svg" alt="arrow"
+             width="35px" height="35px">
+      </button>
+      <button class="table__pagination-btn btn btn__admin-pagination" (click)="nextPage()">
+        <img src="../../../../assets/images/arrow-right.svg" alt="arrow"
+             width="35px" height="35px">
+      </button>
+    </div>
+  </div>
+</section>
+<app-spinner-loader *ngIf="!(items$ | async)"></app-spinner-loader>

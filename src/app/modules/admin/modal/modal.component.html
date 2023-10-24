@@ -1,0 +1,33 @@
+<section class="modal">
+  <h3 class="modal__title">{{data.title}} {{data.id}} {{data.login ? "" : "?"}}</h3>
+
+  <form *ngIf="!data.delete" class="modal__form form">
+
+    <div *ngIf=" !((data.update && data.page === 'Users') || data.login)"
+         class="form__item">
+      <label>Name</label>
+      <input [(ngModel)]="name" class="form__input" type="text" name="name" placeholder="Name"/>
+    </div>
+
+    <div *ngIf="data.page === 'Users'" class="form__item">
+      <label>Password</label>
+      <input [(ngModel)]="password" class="form__input" type="password" name="password" placeholder="Password"/>
+    </div>
+
+    <div *ngIf="data.page === 'Products'" class="form__item">
+      <label>Price</label>
+      <input [(ngModel)]="price" class="form__input" type="number" name="price" placeholder="Price"/>
+    </div>
+
+    <div *ngIf="data.page === 'Products'" class="form__item">
+      <label>Description</label>
+      <input [(ngModel)]="description" class="form__input" type="text" name="description"
+             placeholder="Description"/>
+    </div>
+
+  </form>
+  <div class="modal__buttons">
+    <button (click)="submit()" class="send-btn btn">Ok</button>
+    <button *ngIf="!data.login" (click)="cancel()" class="send-btn btn">Cancel</button>
+  </div>
+</section>

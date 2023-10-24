@@ -1,3 +1,4 @@
 <footer>
-  <button class="btn btn__product" [routerLink]="'/'+buttonText.toLowerCase()">{{buttonText}}</button>
+  <button class="btn btn__product"
+          [routerLink]="'/'+buttonText.toLowerCase() + (buttonText === 'Admin'? '/users': '')">{{buttonText}}</button>
 </footer>

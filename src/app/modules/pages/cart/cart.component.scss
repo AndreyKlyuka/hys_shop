@@ -11,8 +11,35 @@
   }
 
   &__cards {
+    height: 100%;
     display: flex;
+
     flex-wrap: wrap;
+    flex: 1 1 auto;
     gap: 39px;
+  }
+}
+
+.tooltip__total-price {
+  margin-top: 28px;
+}
+
+@media screen and (max-width: $container) {
+  .cart {
+    width: $container_middle;
+  }
+}
+
+@media screen and (max-width: $container_middle) {
+  .cart {
+    &__cards {
+      justify-content: center;
+    }
+  }
+}
+
+@media screen and (max-width: $container_middle) {
+  .cart {
+    width: $container_taplet;
   }
 }

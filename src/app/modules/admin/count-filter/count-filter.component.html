@@ -1,0 +1,13 @@
+<div class="count-filter">
+  <div class="count-filter__field">
+    <select [formControl]="optionField" class="table__input-select" name="filter-param">
+      <option value=">" [selected]="true">More than</option>
+      <option value="<">Less then</option>
+      <option value="=">Equal</option>
+    </select>
+  </div>
+
+  <div class="count-filter__field">
+    <input [formControl]="priceField" class="table__input-value" type="text" placeholder="Enter value">
+  </div>
+</div>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from '@pages/products/products.service';
-import { IProduct } from '@interfaces/product.interface';
+import { ProductsHttpService } from '@pages/products/products-http.service';
 import { TableOptions } from '@interfaces/table-options.interface';
 
 @Component({
@@ -9,17 +8,19 @@ import { TableOptions } from '@interfaces/table-options.interface';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
-  public allProducts: IProduct[] = [];
+  // public allProducts$!: Observable<IProduct[]>;
   public tableOptions: TableOptions = {
-    filter: 'Price',
+    filterBy: 'Price',
+    itemsOnPage: 5,
+    itemType: {
+      name: 'Products',
+      oneItem: 'product',
+    },
   };
 
-  constructor(private productService: ProductsService) {}
+  constructor(public productsService: ProductsHttpService) {}
 
   ngOnInit() {
-    this.productService.getFromStorage();
-    this.productService.products$.subscribe(
-      (products) => (this.allProducts = products.slice(0, 5))
-    );
+    // this.allProducts$ = this.productsService.getAll<IProduct[]>();
   }
 }

@@ -1,0 +1,68 @@
+@import "utils/variables";
+@import "components/btn";
+
+main {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  //background-color: $secondary;
+}
+
+.product {
+  margin: 50px auto;
+  padding: 25px;
+  background-color: $primary;
+
+  &__title {
+    margin-top: 28px;
+    margin-bottom: 35px;
+  }
+
+  &__subtitle {
+    margin-bottom: 28px;
+  }
+
+  &__info {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 50px;
+
+    &-main {
+      width: 70%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    &-extra {
+      width: 30%;
+    }
+
+    &-description-text {
+      margin-top: 20px;
+    }
+  }
+
+  &__order {
+    margin-top: 30px;
+  }
+}
+
+.product__info-description-title {
+  margin-top: 10px;
+}
+
+@media screen and (max-width: $container) {
+  .product {
+    width: $container_middle;
+  }
+}
+
+@media screen and (max-width: $container_middle) {
+  .product {
+    width: $container_taplet;
+  }
+}

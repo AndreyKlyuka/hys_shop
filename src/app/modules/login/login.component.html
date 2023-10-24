@@ -1,0 +1,14 @@
+<div class="wrapper">
+  <div class="wrapper__login login">
+    <div class="login__container">
+      <h3 class="login__title">Login</h3>
+      <form class="login__form" [formGroup]="form">
+        <input formControlName="username" type="text" placeholder="Name">
+        <input formControlName="password" type="password" placeholder="Password">
+        <input type="submit" value="login" (click)="auth()">
+      </form>
+    </div>
+  </div>
+  <app-footer buttonText="Home">Home</app-footer>
+</div>
+

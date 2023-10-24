@@ -1,0 +1,25 @@
+@import "utils/variables";
+@import "components/btn";
+
+input,
+select {
+  background-color: $secondary;
+  border-radius: 5px;
+}
+
+.count-filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  width: 500px;
+
+  &__field {
+    width: 230px;
+
+    input,
+    select {
+      width: 100%;
+    }
+  }
+}

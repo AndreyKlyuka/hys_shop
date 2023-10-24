@@ -10,8 +10,10 @@ import { Observable } from 'rxjs';
   styleUrls: ['./cart-tooltip.component.scss'],
 })
 export class CartTooltipComponent implements OnInit {
-  cartProducts: IProduct[] = [];
-  visible$!: Observable<boolean>;
+
+  // cartProducts: IProduct[] = [];
+  cartProducts$!: Observable<IProduct[]>;
+
 
   constructor(
     public cartService: CartService,
@@ -22,15 +24,10 @@ export class CartTooltipComponent implements OnInit {
     return this.cartService.getTotalPrice(cartProducts);
   }
 
-  public getCount(product: IProduct): number {
-    return this.cartService.getCount(product.id);
-  }
-
   ngOnInit() {
     this.cartService.getFromStorage();
-    this.cartService.cartChanged$.subscribe((cartProducts) => {
-      this.cartProducts = cartProducts;
-    });
-    this.visible$ = this.cartTooltipService.getVisibleObs();
+
+    this.cartProducts$ = this.cartService.cartChanged$;
+
   }
 }
